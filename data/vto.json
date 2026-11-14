@@ -1,0 +1,150 @@
+{
+  "schema": "prn-melaka-vto-v1",
+  "election": "PRU DUN MELAKA KE-16",
+  "registeredTotal": 687697,
+  "registeredSource": "https://dashboard.spr.gov.my/",
+  "pollingDenominator": 669211,
+  "sourceType": "media_citing_SPR",
+  "feedStatus": "snapshot_not_live",
+  "asOf": "2026-11-14T13:00:00+08:00",
+  "collectedAt": null,
+  "percentage": 48.13,
+  "votedCount": 322072,
+  "source": "https://bernama.com/bm/am/news.php?id=2634246",
+  "sourceLabel": "BERNAMA memetik SPR — 1.00 tengah hari",
+  "history": [
+    {
+      "asOf": "2026-11-14T10:00:00+08:00",
+      "percentage": 17.96,
+      "votedCount": 120162,
+      "source": "https://bernama.com/bm/news.php?id=2634159"
+    },
+    {
+      "asOf": "2026-11-14T12:00:00+08:00",
+      "percentage": 37.37,
+      "votedCount": 250076,
+      "source": "https://www.utusan.com.my/nasional/2026/11/prn-melaka-37-37-peratus-sudah-keluar-mengundi/"
+    },
+    {
+      "asOf": "2026-11-14T13:00:00+08:00",
+      "percentage": 48.13,
+      "votedCount": 322072,
+      "source": "https://bernama.com/bm/am/news.php?id=2634246"
+    }
+  ],
+  "areas": {
+    "N01": {
+      "registered": 15483,
+      "percentage": null
+    },
+    "N02": {
+      "registered": 15003,
+      "percentage": 51.8
+    },
+    "N03": {
+      "registered": 15379,
+      "percentage": null
+    },
+    "N04": {
+      "registered": 15043,
+      "percentage": null
+    },
+    "N05": {
+      "registered": 11299,
+      "percentage": null
+    },
+    "N06": {
+      "registered": 23291,
+      "percentage": null
+    },
+    "N07": {
+      "registered": 16617,
+      "percentage": null
+    },
+    "N08": {
+      "registered": 16030,
+      "percentage": null
+    },
+    "N09": {
+      "registered": 21181,
+      "percentage": null
+    },
+    "N10": {
+      "registered": 20217,
+      "percentage": null
+    },
+    "N11": {
+      "registered": 29692,
+      "percentage": 58.48
+    },
+    "N12": {
+      "registered": 20855,
+      "percentage": null
+    },
+    "N13": {
+      "registered": 46521,
+      "percentage": null
+    },
+    "N14": {
+      "registered": 27339,
+      "percentage": null
+    },
+    "N15": {
+      "registered": 25948,
+      "percentage": null
+    },
+    "N16": {
+      "registered": 38252,
+      "percentage": null
+    },
+    "N17": {
+      "registered": 35359,
+      "percentage": null
+    },
+    "N18": {
+      "registered": 24614,
+      "percentage": null
+    },
+    "N19": {
+      "registered": 54910,
+      "percentage": 41.36
+    },
+    "N20": {
+      "registered": 34066,
+      "percentage": 41.32
+    },
+    "N21": {
+      "registered": 26528,
+      "percentage": null
+    },
+    "N22": {
+      "registered": 23042,
+      "percentage": 39.22
+    },
+    "N23": {
+      "registered": 29751,
+      "percentage": null
+    },
+    "N24": {
+      "registered": 26381,
+      "percentage": null
+    },
+    "N25": {
+      "registered": 17742,
+      "percentage": null
+    },
+    "N26": {
+      "registered": 21352,
+      "percentage": 52.04
+    },
+    "N27": {
+      "registered": 19759,
+      "percentage": null
+    },
+    "N28": {
+      "registered": 16043,
+      "percentage": null
+    }
+  },
+  "notes": "Snapshot media, not direct SPR live API. RegisteredTotal includes all election categories; VTO denominators differ. Do not calculate VTO from registeredTotal."
+}
