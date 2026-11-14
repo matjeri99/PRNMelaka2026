@@ -1,6 +1,13 @@
 name: PRN Melaka - semak SPR dan terbitkan dashboard
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'scripts/**'
+      - 'tests/**'
+      - '.github/workflows/spr_sync.yml'
   schedule:
     # Voting-day VTO: 08:00-18:59 MYT; results: 20:00-01:59 MYT
     - cron: '*/5 0-10 14 11 *'
