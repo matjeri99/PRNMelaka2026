@@ -4,15 +4,14 @@
   "totalSeats": 28,
   "status": "official_reported",
   "sourceName": "Astro AWANI (pengumuman SPR)",
-  "sourceUrl": "https://www.astroawani.com/berita-politik/terkini-prn-melaka-bn-raih-15-kerusi-lepasi-majoriti-50-peratus-bentuk-kerajaan-negeri-spr",
-  "publishedAt": "2026-11-14T22:00:00+08:00",
-  "announcedAsOf": "2026-11-14T21:40:00+08:00",
-  "officialCount": 18,
+  "sourceUrl": "https://www.astroawani.com/berita-politik/terkini-prn-melaka-bn-pn-kuasai-24-kerusi-ph-menang-empat-dun-spr",
+  "publishedAt": "2026-11-14T23:43:00+08:00",
+  "officialCount": 28,
   "parties": {
-    "BN": 15,
-    "PH": 2,
-    "PN": 1
+    "BN": 21,
+    "PH": 4,
+    "PN": 3
   },
-  "updatedAt": "2026-11-14T22:00:00+08:00",
+  "updatedAt": "2026-11-14T23:52:32.352026+08:00",
   "note": "Kerusi rasmi SPR dilaporkan AWANI; bukan angka calon/DUN."
 }
