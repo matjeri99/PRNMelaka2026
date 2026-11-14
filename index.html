@@ -246,9 +246,13 @@ function liveSeat(s){
  const early=preliminaryRecords[s.id];
  const local=record(s);
  if(official){const w=computed(s);return {state:"official",party:w?.winner.party||null,record:official,detail:"Rasmi",provenance:"SPR"};}
+ if(early){
+   const totals=s.candidates.map((c,i)=>({party:c.party,v:Number(early.votes?.[String(i)]||0)})).sort((a,b)=>b.v-a.v);
+   const leader=totals.length>1&&totals[0].v>totals[1].v?totals[0].party:null;
+   return {state:"unofficial",party:leader||media?.party||null,record:early,detail:"Undi sementara",provenance:"MySPR"};
+ }
  if(media){return {state:"unofficial",party:media.party,record:null,detail:"Tidak rasmi",provenance:"Bernama"};}
- if(early){return {state:"unofficial",party:null,record:early,detail:"Undi sementara",provenance:"MySPR"};}
- if(local.status!=="none"&&computed(s)){return {state:local.status,party:computed(s).winner.party,record:local,detail:local.status==="official"?"Rasmi (operator)":"Tidak rasmi (operator)",provenance:"operator"};}
+ if(operator&&local.status!=="none"&&computed(s)){return {state:"unofficial",party:computed(s).winner.party,record:local,detail:"Operator setempat",provenance:"operator"};}
  return {state:"none",party:null,record:null,detail:"Menunggu",provenance:""};
 }
 function scoreboard(){
@@ -337,8 +341,6 @@ async function loadMedia(){
  }
  updateFeedUI();render();
 }
-const oldRecord=record;
-record=function(s){return liveRecords[s.id]||records[s.id]||{status:'none',votes:{},turnout:null,source:'',notes:'',savedAt:''};};
 
 load();render();updateFeedUI();loadFeed();loadVTO();loadMedia();setInterval(()=>{loadFeed();loadVTO();loadMedia();},60000);
 </script>
