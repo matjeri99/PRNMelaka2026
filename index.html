@@ -149,7 +149,7 @@ function renderVTO(){
  $('vtoProgress').style.width=(pct===null?0:pct)+'%';
  const label=v.sourceLabel||'Sumber belum disahkan';
  $('vtoSource').textContent=label;
- const ref=String(v.source||'');if(/^https:\/\/(?:bernama\.com|www\.bernama\.com|www\.utusan\.com\.my|dashboard\.spr\.gov\.my)\//.test(ref))$('vtoSourceUrl').href=ref;
+ const ref=String(v.source||'');if(/^https:\/\/(?:bernama\.com|www\.bernama\.com|web26\.bernama\.com|www\.utusan\.com\.my|berita\.rtm\.gov\.my|dashboard\.spr\.gov\.my)\//.test(ref))$('vtoSourceUrl').href=ref;
  $('vtoUpdated').textContent='Data setakat: '+vtoDate(v.asOf)+' (MYT) · '+(v.feedStatus==='official_page_snapshot'?'Diperoleh daripada paparan SPR':'Snapshot laporan sumber — bukan API live');
  const history=Array.isArray(v.history)?v.history:[];
  $('vtoTrend').innerHTML=history.slice(-5).map(t=>'<div><span>'+esc(vtoDate(t.asOf))+'</span><strong>'+Number(t.percentage).toFixed(2)+'%</strong><span>'+esc(vtoNum(t.votedCount))+' pengundi</span></div>').join('');
