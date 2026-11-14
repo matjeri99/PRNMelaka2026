@@ -63,3 +63,12 @@ python -m http.server 8000
 Kemudian lawati `http://localhost:8000`. Jangan buka `index.html` sebagai `file://` kerana `fetch('./data/results.json')` mungkin dihalang dasar keselamatan browser. Untuk menjalankan pengumpul sebenar secara manual, jalankan `FORCE_SPR_SYNC=1 python scripts/sync_spr.py` (macOS/Linux) atau set environment variable pada Windows.
 
 Rujukan rasmi: [MySPR Semak](https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun), [Dashboard SPR / VTO](https://dashboard.spr.gov.my/). Corak endpoint diterangkan secara terbuka oleh [mfaizalzain/mygov — collect_election.py](https://github.com/mfaizalzain/mygov/blob/main/tools/collect_election.py); pengumpul ini ditulis khusus bagi Melaka ke-16.
+## Modul kehadiran mengundi (VTO) — v2.1
+
+- Panel VTO dalam `index.html` membaca `data/vto.json` setiap 60 saat. Ia menunjukkan peratus VTO, bilangan telah mengundi, sumber, masa data, rekod perubahan dan 28 DUN.
+- `registeredTotal=687697` dan 28 pecahan kawasan diperoleh daripada laman rasmi `https://dashboard.spr.gov.my/`. **Jangan guna angka ini sebagai penyebut peratus VTO**: laporan SPR mungkin menggunakan pengundi biasa (`669211`) sebagai penyebut.
+- Snapshot awal **48.13% / 322,072 pengundi setakat 13:00 MYT (14 November 2026)** daripada **Bernama yang memetik SPR** (https://bernama.com/bm/am/news.php?id=2634246). Ia **bukan data API live**.
+- Daripada laporan Bernama sama, enam kawasan ada kadar VTO: N11 58.48%, N26 52.04%, N02 51.80%, N19 41.36%, N20 41.32%, N22 39.22%. 22 kawasan lain dibiarkan tanpa peratus dan tidak dianggarkan.
+- `scripts/sync_vto.py` hanya memeriksa HTML awam di dashboard SPR. Hanya angka peratus keseluruhan dengan label VTO dan waktu pemerhatian yang jelas diterima. Jika halaman memuat VTO melalui JavaScript, pengambilan HTML mungkin **tidak memperoleh data**; snapshot terakhir yang bersumber dikekalkan. Tiada endpoint API awam rasmi SPR yang disahkan untuk sambungan ini.
+- Workflow GitHub Actions menjalankan semakan VTO sepanjang waktu mengundi dan menyalin kedua-dua `data/results.json` serta `data/vto.json` ke GitHub Pages. Klik `Run workflow` untuk deploy perubahan serta-merta.
+- Untuk bacaan yang benar-benar terkini, pengguna boleh klik pautan **Dashboard SPR (live)** yang membawa ke laman SPR sendiri.
