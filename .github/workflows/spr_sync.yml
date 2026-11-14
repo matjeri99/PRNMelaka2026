@@ -34,12 +34,26 @@ jobs:
           python-version: '3.12'
       - name: Test SPR collector
         run: python -m unittest discover -s tests -v
+      - name: Check frontend JavaScript syntax
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          h=Path('index.html').read_text(encoding='utf-8')
+          scripts=re.findall(r'<script(?![^>]*type="application/json")[^>]*>(.*?)</script>',h,flags=re.S)
+          Path('/tmp/melaka_frontend.js').write_text('\n'.join(scripts),encoding='utf-8')
+          PY
+          node --check /tmp/melaka_frontend.js
       - name: Fetch SPR website JSON
         id: collector
         continue-on-error: true
         env:
           FORCE_SPR_SYNC: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: python scripts/sync_spr.py
+      - name: Refresh Bernama unofficial seats
+        id: bernama
+        continue-on-error: true
+        run: python scripts/sync_bernama.py
       - name: Read public SPR turnout summary (best effort)
         id: vto
         continue-on-error: true
@@ -49,10 +63,10 @@ jobs:
         run: echo '::warning::SPR source unavailable; retaining verified cache'
       - name: Commit cache if changed
         run: |
-          if ! git diff --quiet -- data/results.json data/vto.json; then
+          if ! git diff --quiet -- data/results.json data/vto.json data/bernama.json; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add data/results.json data/vto.json
+            git add data/results.json data/vto.json data/bernama.json
             git commit -m 'chore: update SPR Melaka results'
             git push
           else
@@ -64,6 +78,7 @@ jobs:
           cp index.html _site/index.html
           cp data/results.json _site/data/results.json
           cp data/vto.json _site/data/vto.json
+          cp data/bernama.json _site/data/bernama.json
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
