@@ -82,7 +82,31 @@ def vote_value(value):
     v=str(value).replace(",","").strip()
     return int(v) if v.isdigit() else None
 
-def match_candidates(seed,raw):
+def extract_candidates(response, expected):
+    """Find a candidate-vote array at any reasonable nesting, not only [0].penamaan."""
+    found = []
+    def visit(node, depth=0):
+        if depth > 7:
+            return
+        if isinstance(node, list):
+            if node and all(isinstance(x, dict) for x in node):
+                if all("NamaUndiCalon" in x and "BilUndi" in x for x in node):
+                    found.append(node)
+            for child in node:
+                visit(child, depth+1)
+        elif isinstance(node, dict):
+            for key, value in node.items():
+                if key not in ("html", "script", "view", "markup"):
+                    visit(value, depth+1)
+    visit(response)
+    if not found:
+        return [], "SPR has not supplied candidate-vote rows"
+    for rows in found:
+        if len(rows)==expected:
+            return rows, ""
+    return max(found, key=len), "Candidate count differs from nomination list"
+
+def match_candidates(seed,raw,require_winner=True):
     if len(raw)!=len(seed["candidates"]):return None,"candidate count mismatch"
     used=set();votes={};winners=[]
     for i,c in enumerate(seed["candidates"]):
@@ -95,11 +119,17 @@ def match_candidates(seed,raw):
         if v is None:return None,"missing candidate votes"
         used.add(j);votes[str(i)]=v
         if str(raw[j].get("StatusCalon") or "").upper()=="MNG":winners.append(i)
-    if len(winners)!=1:return None,"winner not confirmed"
+    if sum(votes.values())<=0:
+        return None,"no votes yet"
     top=max(votes.values())
-    if votes[str(winners[0])]!=top or list(votes.values()).count(top)!=1:
-        return None,"winner mismatch"
-    return votes,""
+    if len(winners)==1 and votes[str(winners[0])]==top and list(votes.values()).count(top)==1:
+        return votes,"official"
+    if require_winner:
+        return None,"winner not confirmed"
+    # Numeric vote tallies are provisional until the SPR winner marker is present.
+    if len(winners)>1 or (winners and votes[str(winners[0])]!=top):
+        return None,"conflicting winner marker"
+    return votes,"preliminary"
 
 def seat_code(row):
     v=str(row.get("KodBahagianPilihanRaya") or row.get("AppendKod") or "").upper()
@@ -129,6 +159,7 @@ def run():
     if not isinstance(duns,list) or len(duns)!=28:
         raise ValueError("Expected exactly 28 SPR DUN records")
     lookup={s["id"]:s for s in SEED};missing=[];changed=0
+    preliminary={}
     for row in duns:
         code=seat_code(row)
         if code not in lookup:
@@ -137,24 +168,32 @@ def run():
             resp=fetch.post("/semakan/keputusan/keputusanPruDun",
                 {"_token":token,"kategori":"PRU_DUN","PilihanrayaId":eid,
                  "RefNegeriId":state,"kodbahagian":row.get("AppendKod")})
-            entries=resp.get("pilihanraya") or []
-            raw=(entries[0].get("penamaan") or []) if entries and isinstance(entries[0],dict) else []
-            matched,reason=match_candidates(lookup[code],raw)
+            raw,explanation=extract_candidates(resp,len(lookup[code]["candidates"]))
+            if not raw:
+                missing.append(code+": "+explanation);continue
+            matched,level=match_candidates(lookup[code],raw,require_winner=False)
             if matched is None:
-                missing.append(code+": "+reason);continue
-            if official.get(code,{}).get("votes")!=matched:
-                official[code]={"status":"official","votes":matched,"turnout":None,
-                    "source":SOURCE,"notes":"Verified MySPR Semak website JSON",
+                missing.append(code+": "+level);continue
+            if level=="official":
+                if official.get(code,{}).get("votes")!=matched:
+                    official[code]={"status":"official","votes":matched,"turnout":None,
+                        "source":SOURCE,"notes":"Verified MySPR Semak website JSON",
+                        "savedAt":now.isoformat(),"sourceType":"spr_auto"}
+                    changed+=1
+            elif code not in official:
+                preliminary[code]={"status":"unofficial","votes":matched,"turnout":None,
+                    "source":SOURCE,"notes":"Undi sementara yang belum diumumkan rasmi SPR",
                     "savedAt":now.isoformat(),"sourceType":"spr_auto"}
-                changed+=1
         except Exception as e:missing.append(code+": "+str(e)[:100])
         time.sleep(.25)
     payload={"schema":"prn-melaka-2026-spr-v2","election":title,"source":SOURCE,
              "upstream":"SPR website JSON (unofficial integration)",
              "syncedAt":now.isoformat(),"officialCount":len(official),
-             "unavailableCount":28-len(official),"records":official,"warnings":missing[:30]}
+             "unavailableCount":28-len(official),"records":official,
+             "preliminary":preliminary,"preliminaryCount":len(preliminary),
+             "warnings":missing[:30]}
     OUT.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
-    print(f"Verified {len(official)}/28; changed {changed}; unavailable {len(missing)}")
+    print(f"Verified {len(official)}/28; provisional {len(preliminary)}; changed {changed}; unavailable {len(missing)}")
     return 0
 
 if __name__=="__main__":
