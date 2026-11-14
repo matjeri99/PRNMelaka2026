@@ -74,7 +74,7 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
 @media(min-width:501px) and (max-width:800px){.vote-stat>b{font-size:19px}}
 
 #awaniOfficial{margin-bottom:12px;border-color:#3c655e}
-#awaniOfficial[hidden]{display:none!important}
+#awaniOfficial[hidden],#myundiHeadline[hidden]{display:none!important}
 #awaniOfficial .headline-top .tag-current{background:#14392d;color:#74e6c3}
 #awaniOfficial .parties-live{gap:7px}
 </style>
@@ -88,7 +88,7 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
   <section class="quick-head"><div><div class="tiny-label">14 NOVEMBER 2026 · 28 DUN</div><h1>MELAKA <span>2026</span></h1></div><div class="quick-status"><b id="feedHeading">Sedang menyemak...</b><small id="feedDetail">Memuatkan keputusan</small></div></section>
 
   <section class="headline-results" id="awaniOfficial" aria-label="Keputusan rasmi SPR dilaporkan AWANI" hidden>
-    <div class="headline-top"><span>KERUSI RASMI SPR</span><span class="tag-current">AWANI</span></div>
+    <div class="headline-top"><span>KERUSI RASMI SPR</span><span class="tag-current">RASMI</span></div>
     <div class="tally-layout">
       <div class="count-major"><strong id="awaniOfficialCount">—</strong><small>KERUSI DIUMUMKAN / 28</small></div>
       <div class="parties-live" id="awaniPartyBoard"></div>
@@ -96,7 +96,7 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
     <div class="tally-foot"><span id="awaniOfficialAsOf">—</span><span id="awaniOfficialPublished">—</span></div>
   </section>
 
-  <section class="headline-results" aria-label="Keputusan pilihan raya terkini">
+  <section class="headline-results" id="myundiHeadline" aria-label="Kedudukan undi tidak rasmi">
     <div class="headline-top"><span>KEDUDUKAN UNDI</span><span class="tag-current" id="summarySourceStatus">TIDAK RASMI</span></div>
     <div class="tally-layout">
       <div class="count-major"><strong id="reported">0<span>/28</span></strong><small>LEPAS AMBANG</small></div>
@@ -106,7 +106,7 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
   </section>
 
   <section class="seat-section" id="direktori">
-    <div class="seat-section-head"><h2>28 DUN · Statistik Undi</h2><span id="resultCount">28 kawasan</span></div>
+    <div class="seat-section-head"><h2 id="dunVotesTitle">28 DUN · Statistik Undi</h2><span id="resultCount">28 kawasan</span></div>
     <div class="clean-filters"><input class="field" id="search" placeholder="⌕  Cari DUN atau calon" aria-label="Cari DUN atau calon">
       <select class="field filter" id="statusFilter" aria-label="Status"><option value="all">Semua</option><option value="passed">LEPAS</option><option value="pending">BELUM</option></select>
       <select class="field filter" id="typeFilter" aria-label="Jenis pertandingan"><option value="all">Semua penjuru</option><option value="2">2 penjuru</option><option value="3">3 penjuru</option><option value="4">4 penjuru</option></select>
@@ -359,6 +359,7 @@ async function loadMyUndi(manual=false){
   }
   if(valid<28)throw Error('Data tidak lengkap: '+valid+'/28');
   myundiData=value;
+  document.getElementById('dunVotesTitle').textContent=value.fetchedAt?'28 DUN · Undi Tidak Rasmi':'28 DUN · Snapshot 7:59 malam';
   if(manual)toast('Statistik dikemas kini daripada cache. Semak masa snapshot.');
  }catch(e){
   if(manual)toast('Menggunakan snapshot terakhir yang ada.');
@@ -392,6 +393,7 @@ async function loadAwaniOfficial(){
   document.getElementById('awaniOfficialAsOf').textContent=asof;
   document.getElementById('awaniOfficialPublished').textContent='Laporan AWANI '+t(data.publishedAt);
   document.getElementById('awaniOfficial').hidden=false;
+  document.getElementById('myundiHeadline').hidden=data.officialCount===28;
  }catch(err){console.warn('AWANI official summary unavailable; retaining last visible summary',err);}
 }
 
