@@ -3,25 +3,48 @@
   "election": "PRU DUN MELAKA KE-16",
   "source": "https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun",
   "upstream": "SPR website JSON (unofficial integration)",
-  "syncedAt": "2026-11-14T20:44:36.327829+08:00",
-  "officialCount": 0,
-  "unavailableCount": 28,
-  "records": {},
+  "syncedAt": "2026-11-14T21:08:54.669575+08:00",
+  "officialCount": 2,
+  "unavailableCount": 26,
+  "records": {
+    "N04": {
+      "status": "official",
+      "votes": {
+        "0": 8296,
+        "1": 2211
+      },
+      "turnout": null,
+      "source": "https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun",
+      "notes": "Verified MySPR Semak website JSON",
+      "savedAt": "2026-11-14T21:08:54.669575+08:00",
+      "sourceType": "spr_auto"
+    },
+    "N12": {
+      "status": "official",
+      "votes": {
+        "0": 8864,
+        "1": 6112
+      },
+      "turnout": null,
+      "source": "https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun",
+      "notes": "Verified MySPR Semak website JSON",
+      "savedAt": "2026-11-14T21:08:54.669575+08:00",
+      "sourceType": "spr_auto"
+    }
+  },
   "preliminary": {},
   "preliminaryCount": 0,
   "warnings": [
     "N01: SPR has not supplied candidate-vote rows",
     "N02: SPR has not supplied candidate-vote rows",
     "N03: SPR has not supplied candidate-vote rows",
-    "N04: SPR has not supplied candidate-vote rows",
     "N05: SPR has not supplied candidate-vote rows",
     "N06: SPR has not supplied candidate-vote rows",
     "N07: SPR has not supplied candidate-vote rows",
     "N08: SPR has not supplied candidate-vote rows",
     "N09: SPR has not supplied candidate-vote rows",
     "N10: SPR has not supplied candidate-vote rows",
-    "N11: SPR has not supplied candidate-vote rows",
-    "N12: SPR has not supplied candidate-vote rows",
+    "N11: uncertain candidate name: Mohd Ridzuan Abdul Rahman",
     "N13: SPR has not supplied candidate-vote rows",
     "N14: SPR has not supplied candidate-vote rows",
     "N15: SPR has not supplied candidate-vote rows",
