@@ -5,8 +5,8 @@
   "source": "https://election.bernama.com/prn/melaka/2026/",
   "sourceLabel": "Portal Pilihan Raya BERNAMA",
   "asOfDay": "2026-11-14",
-  "retrievedAt": "2026-11-14T12:34:43.197Z",
-  "reportedCount": 22,
+  "retrievedAt": "2026-11-14T20:42:36.341705+08:00",
+  "reportedCount": 28,
   "officialCount": 0,
   "seats": {
     "N01": {
@@ -44,6 +44,11 @@
       "status": "unofficial",
       "votes": null
     },
+    "N08": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
     "N09": {
       "party": "BN",
       "status": "unofficial",
@@ -59,8 +64,33 @@
       "status": "unofficial",
       "votes": null
     },
+    "N12": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N13": {
+      "party": "PN",
+      "status": "unofficial",
+      "votes": null
+    },
     "N14": {
       "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N15": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N16": {
+      "party": "PH",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N17": {
+      "party": "PN",
       "status": "unofficial",
       "votes": null
     },
