@@ -1,0 +1,214 @@
+{
+  "schema": "prn-melaka-myundi-v1",
+  "election": "PRN Melaka 2026",
+  "source": "https://www.myundi.com.my/prnmelaka",
+  "sourceType": "user_supplied_myundi_screenshot",
+  "status": "unofficial",
+  "snapshotAt": "2026-11-14T19:59:00+08:00",
+  "snapshotWindow": "7:58–7:59 malam",
+  "capturedAt": "2026-11-14T19:59:00+08:00",
+  "fetchedAt": null,
+  "counts": {
+    "reported": 28,
+    "passed": 13
+  },
+  "method": "Screenshot author: Ambang = undi calon kedua + maksimum baki undi + 1. This is a derived mathematical threshold; not a declaration of election result.",
+  "seats": {
+    "N01": {
+      "party": "BN",
+      "leaderVotes": 5331,
+      "threshold": 5487,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N02": {
+      "party": "BN",
+      "leaderVotes": 9675,
+      "threshold": 1860,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N03": {
+      "party": "BN",
+      "leaderVotes": 7619,
+      "threshold": 3977,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N04": {
+      "party": "BN",
+      "leaderVotes": 8131,
+      "threshold": 2251,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N05": {
+      "party": "BN",
+      "leaderVotes": 5975,
+      "threshold": 2065,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N06": {
+      "party": "BN",
+      "leaderVotes": 6443,
+      "threshold": 9838,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N07": {
+      "party": "BN",
+      "leaderVotes": 3743,
+      "threshold": 6455,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N08": {
+      "party": "BN",
+      "leaderVotes": 5529,
+      "threshold": 5723,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N09": {
+      "party": "BN",
+      "leaderVotes": 5095,
+      "threshold": 10675,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N10": {
+      "party": "BN",
+      "leaderVotes": 10712,
+      "threshold": 3590,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N11": {
+      "party": "BN",
+      "leaderVotes": 13558,
+      "threshold": 7485,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N12": {
+      "party": "BN",
+      "leaderVotes": 3661,
+      "threshold": 11467,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N13": {
+      "party": "PN",
+      "leaderVotes": 8573,
+      "threshold": 24544,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N14": {
+      "party": "BN",
+      "leaderVotes": 4871,
+      "threshold": 14178,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N15": {
+      "party": "BN",
+      "leaderVotes": 6024,
+      "threshold": 12095,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N16": {
+      "party": "PH",
+      "leaderVotes": 740,
+      "threshold": 24421,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N17": {
+      "party": "PN",
+      "leaderVotes": 5242,
+      "threshold": 19638,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N18": {
+      "party": "BN",
+      "leaderVotes": 7820,
+      "threshold": 11770,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N19": {
+      "party": "PH",
+      "leaderVotes": 10644,
+      "threshold": 24756,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N20": {
+      "party": "PH",
+      "leaderVotes": 13527,
+      "threshold": 6489,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N21": {
+      "party": "BN",
+      "leaderVotes": 13995,
+      "threshold": 6175,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N22": {
+      "party": "PH",
+      "leaderVotes": 8874,
+      "threshold": 3344,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N23": {
+      "party": "BN",
+      "leaderVotes": 10182,
+      "threshold": 10928,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N24": {
+      "party": "PN",
+      "leaderVotes": 6051,
+      "threshold": 11098,
+      "passed": false,
+      "status": "unofficial"
+    },
+    "N25": {
+      "party": "BN",
+      "leaderVotes": 9163,
+      "threshold": 3552,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N26": {
+      "party": "BN",
+      "leaderVotes": 12160,
+      "threshold": 4556,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N27": {
+      "party": "BN",
+      "leaderVotes": 10158,
+      "threshold": 4628,
+      "passed": true,
+      "status": "unofficial"
+    },
+    "N28": {
+      "party": "BN",
+      "leaderVotes": 7838,
+      "threshold": 4070,
+      "passed": true,
+      "status": "unofficial"
+    }
+  }
+}
