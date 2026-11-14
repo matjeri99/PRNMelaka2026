@@ -1,0 +1,11 @@
+{
+  "schema": "prn-melaka-2026-spr-v2",
+  "election": "PRU DUN MELAKA KE-16 (2026)",
+  "source": "https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun",
+  "upstream": "SPR MySPR Semak website JSON (unofficial integration)",
+  "syncedAt": null,
+  "officialCount": 0,
+  "unavailableCount": 28,
+  "records": {},
+  "warnings": []
+}
