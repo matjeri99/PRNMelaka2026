@@ -28,6 +28,8 @@ jobs:
       - name: Fetch SPR website JSON
         id: collector
         continue-on-error: true
+        env:
+          FORCE_SPR_SYNC: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
         run: python scripts/sync_spr.py
       - name: Note upstream failure
         if: steps.collector.outcome == 'failure'
