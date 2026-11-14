@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#081426">
-<meta name="description" content="Dashboard pemantauan PRN Melaka ke-16 2026. 28 DUN, 79 calon, integrasi cache automatik keputusan rasmi MySPR Semak, 28 DUN dan 79 calon.">
+<meta name="description" content="Papan Keputusan PRN Melaka 2026 — 28 kerusi DUN, keputusan terkini dan kehadiran mengundi.">
 <title>PRN Melaka 2026 · Papan Keputusan</title>
 <style>
 :root{--bg:#071222;--panel:#111e31;--panel2:#142439;--line:#27374f;--fg:#edf3fc;--muted:#9cacc3;--gold:#f1bf62;--teal:#4fe2c0;--blue:#3f88ff;--red:#ec647c;--radius:18px;--bn:#397de1;--ph:#e34d66;--pn:#35a46d;--bersama:#bd76e9;--bersatu:#37b9bc;--bebas:#8d96a4;--putra:#f5b85b}
@@ -215,7 +215,7 @@ function renderVTO(){
  const label=v.sourceLabel||'Sumber belum disahkan';
  $('vtoSource').textContent=label;
  const ref=String(v.source||'');if(/^https:\/\/(?:bernama\.com|www\.bernama\.com|web26\.bernama\.com|www\.utusan\.com\.my|berita\.rtm\.gov\.my|dashboard\.spr\.gov\.my)\//.test(ref))$('vtoSourceUrl').href=ref;
- $('vtoUpdated').textContent='Data setakat: '+vtoDate(v.asOf)+' (MYT) · '+(v.feedStatus==='official_page_snapshot'?'Diperoleh daripada paparan SPR':'Snapshot laporan sumber — bukan API live');
+ $('vtoUpdated').textContent=vtoDate(v.asOf);
  const history=Array.isArray(v.history)?v.history:[];
  $('vtoTrend').innerHTML=history.slice(-5).map(t=>'<div><span>'+esc(vtoDate(t.asOf))+'</span><strong>'+Number(t.percentage).toFixed(2)+'%</strong><span>'+esc(vtoNum(t.votedCount))+' pengundi</span></div>').join('');
  $('vtoAreas').innerHTML=SEATS.map(s=>{const a=v.areas?.[s.id]||{};const p=(Number.isFinite(a.percentage)&&a.percentage>=0&&a.percentage<=100)?a.percentage:null;
