@@ -48,14 +48,28 @@ jobs:
         id: collector
         continue-on-error: true
         run: python scripts/sync_myundi.py
+      - name: Refresh official SPR party totals from AWANI (best effort)
+        run: python scripts/sync_awani.py
       - name: Commit cache if changed
         run: |
-          if ! git diff --quiet -- data/myundi.json; then
+          if ! git diff --quiet -- data/myundi.json data/awani.json; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add data/myundi.json
-            git commit -m 'chore: refresh MyUndi Melaka vote snapshot'
-            git push
+            git add data/myundi.json data/awani.json
+            git commit -m 'chore: refresh Melaka results from validated sources'
+            # Concurrent human edits can move main; retry without force pushing.
+            for attempt in 1 2 3; do
+              if git push; then
+                echo 'Published data commit'
+                break
+              fi
+              git fetch origin main
+              if ! git rebase origin/main; then
+                git rebase --abort
+                echo 'Concurrent data edits need review; continuing safe Pages deploy'
+                break
+              fi
+            done
           else
             echo 'No updated data'
           fi
@@ -64,6 +78,7 @@ jobs:
           mkdir -p _site/data
           cp index.html _site/index.html
           cp data/myundi.json _site/data/myundi.json
+          cp data/awani.json _site/data/awani.json
           cp data/vto.json _site/data/vto.json
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
