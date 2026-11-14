@@ -3,7 +3,7 @@
   "election": "PRU DUN MELAKA KE-16",
   "source": "https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun",
   "upstream": "SPR website JSON (unofficial integration)",
-  "syncedAt": "2026-11-14T20:35:47.582367+08:00",
+  "syncedAt": "2026-11-14T20:39:23.904749+08:00",
   "officialCount": 0,
   "unavailableCount": 28,
   "records": {},
