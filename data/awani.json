@@ -1,0 +1,18 @@
+{
+  "schema": "prn-melaka-awani-v1",
+  "election": "PRN Melaka 2026",
+  "totalSeats": 28,
+  "status": "official_reported",
+  "sourceName": "Astro AWANI (pengumuman SPR)",
+  "sourceUrl": "https://www.astroawani.com/berita-politik/terkini-prn-melaka-bn-raih-15-kerusi-lepasi-majoriti-50-peratus-bentuk-kerajaan-negeri-spr",
+  "publishedAt": "2026-11-14T22:00:00+08:00",
+  "announcedAsOf": "2026-11-14T21:40:00+08:00",
+  "officialCount": 18,
+  "parties": {
+    "BN": 15,
+    "PH": 2,
+    "PN": 1
+  },
+  "updatedAt": "2026-11-14T22:00:00+08:00",
+  "note": "Kerusi rasmi SPR dilaporkan AWANI; bukan angka calon/DUN."
+}
