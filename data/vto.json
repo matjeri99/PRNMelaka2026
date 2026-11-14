@@ -6,12 +6,12 @@
   "pollingDenominator": 669211,
   "sourceType": "media_citing_SPR",
   "feedStatus": "snapshot_not_live",
-  "asOf": "2026-11-14T13:00:00+08:00",
+  "asOf": "2026-11-14T18:05:00+08:00",
   "collectedAt": null,
-  "percentage": 48.13,
-  "votedCount": 322072,
-  "source": "https://bernama.com/bm/am/news.php?id=2634246",
-  "sourceLabel": "BERNAMA memetik SPR — 1.00 tengah hari",
+  "percentage": 70.59,
+  "votedCount": 472377,
+  "source": "https://berita.rtm.gov.my/mandat/senarai-berita-mandat/senarai-artikel/prn-melaka-240-pusat-mengundi-ditutup-serentak-6-petang/",
+  "sourceLabel": "RTM / Bernama memetik Dashboard SPR — 6.05 petang",
   "history": [
     {
       "asOf": "2026-11-14T10:00:00+08:00",
@@ -30,6 +30,12 @@
       "percentage": 48.13,
       "votedCount": 322072,
       "source": "https://bernama.com/bm/am/news.php?id=2634246"
+    },
+    {
+      "asOf": "2026-11-14T18:05:00+08:00",
+      "percentage": 70.59,
+      "votedCount": 472377,
+      "source": "https://berita.rtm.gov.my/mandat/senarai-berita-mandat/senarai-artikel/prn-melaka-240-pusat-mengundi-ditutup-serentak-6-petang/"
     }
   ],
   "areas": {
