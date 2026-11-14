@@ -58,6 +58,21 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
 @media(max-width:500px){.brand strong{font-size:13px}.top-status{font-size:9px;padding:7px 8px}.quick-head h1{font-size:32px}.tally-layout{gap:8px}.count-major strong{font-size:51px}.party-live{padding:9px 8px}.party-live strong{font-size:28px}.parties-live{gap:6px}.party-live b{font-size:10px}.seat{min-height:167px}.seat .inner{padding:12px 11px 8px}.seat h3{font-size:15px}.seat-footer{padding:8px 11px}.card-lead strong{font-size:23px}.seat-status{font-size:8px;padding:4px}.seat-code{font-size:10px}.clean-footer{display:block}.clean-footer details>summary{text-align:left;margin-top:10px}}
 @media(max-width:345px){.seats{grid-template-columns:1fr}.parties-live{grid-template-columns:repeat(2,1fr)}}
 
+
+/* Compact vote-count cards */
+.headline-results .count-major strong{font-variant-numeric:tabular-nums}
+.vote-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:13px 0 2px}
+.vote-stat{background:#0a1a2c;border:1px solid #304053;border-radius:9px;padding:9px 10px;min-width:0}
+.vote-stat>small{display:block;color:#91a9c1;font-size:9px;font-weight:800;letter-spacing:.11em;margin-bottom:3px}
+.vote-stat>b{display:block;font-size:clamp(16px,2vw,23px);font-weight:900;color:#f1f5fa;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.seat-status.status-pass{background:#134b3d;color:#8aefc9;border-color:#327962}
+.seat-status.status-wait{background:#25384b;color:#afc0d4;border-color:#39536c}
+.seat{min-height:198px}.seat .subline{min-height:0;margin:7px 0 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.seat .card-lead{margin-bottom:1px}.seat .card-lead strong{font-size:26px}
+.seat .seat-footer{padding:9px 13px}.headline-results .tally-foot span:first-child{color:#cddded}
+@media(max-width:500px){.vote-stats{gap:5px;margin:10px 0 0}.vote-stat{padding:8px 6px}.vote-stat>b{font-size:15px}.seat .inner{padding:12px 9px 8px}.seat{min-height:190px}.seat h3{font-size:15px}.seat .card-lead strong{font-size:23px}.seat .subline{font-size:10px}.seat .seat-footer{font-size:9px;padding:8px 9px}}
+@media(min-width:501px) and (max-width:800px){.vote-stat>b{font-size:19px}}
+
 </style>
 </head>
 <body>
@@ -69,18 +84,18 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
   <section class="quick-head"><div><div class="tiny-label">14 NOVEMBER 2026 · 28 DUN</div><h1>MELAKA <span>2026</span></h1></div><div class="quick-status"><b id="feedHeading">Sedang menyemak...</b><small id="feedDetail">Memuatkan keputusan</small></div></section>
 
   <section class="headline-results" aria-label="Keputusan pilihan raya terkini">
-    <div class="headline-top"><span>KEPUTUSAN TERKINI</span><span class="tag-current" id="summarySourceStatus">TIDAK RASMI</span></div>
+    <div class="headline-top"><span>KEDUDUKAN UNDI</span><span class="tag-current" id="summarySourceStatus">TIDAK RASMI</span></div>
     <div class="tally-layout">
-      <div class="count-major"><strong id="reported">0<span>/28</span></strong><small>KERUSI DILAPORKAN</small></div>
+      <div class="count-major"><strong id="reported">0<span>/28</span></strong><small>LEPAS AMBANG</small></div>
       <div class="parties-live" id="partySnapshot"><div class="party-live"><b>BN</b><strong>—</strong></div><div class="party-live"><b>PH</b><strong>—</strong></div><div class="party-live"><b>PN</b><strong>—</strong></div></div>
     </div>
-    <div class="tally-foot"><span><b id="official">0</b> rasmi</span><span id="reportSub">Menunggu keputusan...</span><span id="summaryUpdate">Menyemak...</span></div>
+    <div class="tally-foot"><span>Majoriti mudah <b id="official">15</b></span><span id="reportSub">Menunggu keputusan...</span><span id="summaryUpdate">Menyemak...</span></div>
   </section>
 
   <section class="seat-section" id="direktori">
-    <div class="seat-section-head"><h2>Keputusan 28 DUN</h2><span id="resultCount">28 kawasan</span></div>
+    <div class="seat-section-head"><h2>28 DUN · Statistik Undi</h2><span id="resultCount">28 kawasan</span></div>
     <div class="clean-filters"><input class="field" id="search" placeholder="⌕  Cari DUN atau calon" aria-label="Cari DUN atau calon">
-      <select class="field filter" id="statusFilter" aria-label="Status"><option value="all">Semua</option><option value="unofficial">Tidak rasmi</option><option value="official">Rasmi</option><option value="none">Menunggu</option></select>
+      <select class="field filter" id="statusFilter" aria-label="Status"><option value="all">Semua</option><option value="passed">LEPAS</option><option value="pending">BELUM</option></select>
       <select class="field filter" id="typeFilter" aria-label="Jenis pertandingan"><option value="all">Semua penjuru</option><option value="2">2 penjuru</option><option value="3">3 penjuru</option><option value="4">4 penjuru</option></select>
     </div>
     <div class="seats" id="seats" aria-live="polite"></div>
@@ -96,7 +111,7 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
       <div class="sr-only"><button id="vtoRefresh">Kemas kini VTO</button><a id="vtoSourceUrl" href="https://dashboard.spr.gov.my/">Sumber</a></div>
     </div>
     <div class="panel composition-compact">
-      <div class="panel-head"><h2>Komposisi Kerusi</h2><span class="minor">2026</span></div>
+      <div class="panel-head"><h2>Parti Mendahului</h2><span class="minor">Tidak rasmi</span></div>
       <div id="partyBoard"></div>
       <div class="inset-muted" id="leaderText">Belum ada keputusan.</div>
       <details class="inset-details"><summary>Banding 2021</summary><div class="history"><div><span class="minor">2021 · BN 21 / PH 5 / PN 2</span><div class="bars" id="bar2021"><span style="width:75%;background:#397de1"></span><span style="width:17.857%;background:#e34d66"></span><span style="width:7.143%;background:#35a46d"></span></div></div></div><div class="minor" id="barLabel">2026</div><div class="bars" id="bar2026"></div></details>
@@ -104,10 +119,10 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
   </section>
 
   <footer class="clean-footer">
-    <span>PRN MELAKA 2026 · PAPAN PEMANTAUAN BEBAS</span>
+    <span>PRN MELAKA 2026 · DATA TIDAK RASMI</span>
     <details id="maklumat"><summary>Info & pengurusan</summary>
-      <div class="info-body"><p>Keputusan awal ialah <b>tidak rasmi</b> sehingga pengumuman SPR. Bilangan undi calon hanya dipaparkan apabila tersedia dan dapat disahkan. Data mungkin lewat dikemas kini. Papan ini bukan laman rasmi SPR.</p>
-        <p>Data: <a href="https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun" target="_blank" rel="noopener noreferrer">MySPR</a> · <a href="https://election.bernama.com/prn/melaka/2026/" target="_blank" rel="noopener noreferrer">Bernama</a> · <a href="https://dashboard.spr.gov.my/" target="_blank" rel="noopener noreferrer">VTO SPR</a></p>
+      <div class="info-body"><p>Angka ini ialah kiraan <b>tidak rasmi</b>. LEPAS ialah ambang matematik dalam snapshot, bukan keputusan rasmi atau pengisytiharan menang. Snapshot asal dirakam 7.58–7.59 malam, 14 November 2026. Jika ada kemas kini lengkap MyUndi, ambang baharu dikira secara konservatif menggunakan bilangan pemilih berdaftar. Data mungkin lewat.</p>
+        <p>Sumber undi: <a href="https://www.myundi.com.my/prnmelaka" target="_blank" rel="noopener noreferrer">MyUndi</a> · Snapshot pengguna 14 Nov 2026. Kehadiran: <a href="https://dashboard.spr.gov.my/" target="_blank" rel="noopener noreferrer">VTO</a>.</p>
         <p id="datestamp">Belum ada data</p><p id="savedLabel"></p>
         <div class="utility-actions"><button class="btn btn-sm" id="exportBtn">JSON</button><button class="btn btn-sm" id="csvBtn">CSV</button><button class="btn btn-sm" id="operatorBtn">Mod Operator</button></div>
         <div id="operatorControls" style="display:none;margin-top:12px"><button id="importBtn" class="btn btn-sm">Import JSON</button><button id="resetBtn" class="btn btn-sm btn-danger">Padam data setempat</button><input id="fileInput" type="file" accept="application/json,.json" hidden></div>
@@ -117,6 +132,7 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
 </main>
 <dialog id="editor"><form id="editForm" method="dialog"><div class="modal-hd"><div><span class="eyebrow" style="margin:0" id="modalCode">N01</span><h2 id="modalTitle">Kawasan</h2></div><button type="button" class="close" id="closeModal" aria-label="Tutup">×</button></div><div class="modal-bd"><p class="small-note" id="modalIntro"></p><div class="field-wrap"><label for="editStatus">Status keputusan</label><select class="field" id="editStatus"><option value="none">Belum dilaporkan</option><option value="unofficial">TIDAK RASMI · Laporan awal</option><option value="official">RASMI SPR · Setelah disemak</option></select></div><div class="separation"></div><div class="field-wrap"><label>Jumlah undi setiap calon (kosong jika belum diketahui)</label><div id="votesInputs"></div></div><div class="field-wrap"><label for="editTurnout">Peratus keluar mengundi (jika diketahui)</label><input class="field" id="editTurnout" type="number" step="0.01" min="0" max="100" placeholder="Contoh: 72.50"></div><div class="field-wrap"><label for="editSource">Sumber keputusan / pautan dokumen</label><input class="field" id="editSource" type="text" placeholder="https://... atau nombor dokumen SPR"></div><div class="field-wrap"><label for="editNotes">Catatan audit operator</label><textarea class="field" id="editNotes" rows="3" placeholder="Masa diumumkan, pegawai menyemak, pembetulan…"></textarea></div><label class="check"><input type="checkbox" id="verifiedOfficial"><span>Untuk status RASMI SPR sahaja: saya telah menyemak sumber keputusan rasmi dan mengesahkan maklumat yang dimasukkan.</span></label><p class="small-note" id="modalError" style="color:#ff9ab0;min-height:18px"></p></div><div class="modal-ft"><button type="button" class="btn" id="cancelBtn">Batal</button><button type="submit" class="btn btn-primary">Simpan Keputusan</button></div></form></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
+<script id="snapshotMyUndi" type="application/json">{"schema":"prn-melaka-myundi-v1","election":"PRN Melaka 2026","source":"https://www.myundi.com.my/prnmelaka","sourceType":"user_supplied_myundi_screenshot","status":"unofficial","snapshotAt":"2026-11-14T19:59:00+08:00","snapshotWindow":"7:58–7:59 malam","capturedAt":"2026-11-14T19:59:00+08:00","fetchedAt":null,"counts":{"reported":28,"passed":13},"method":"Screenshot author: Ambang = undi calon kedua + maksimum baki undi + 1. This is a derived mathematical threshold; not a declaration of election result.","seats":{"N01":{"party":"BN","leaderVotes":5331,"threshold":5487,"passed":false,"status":"unofficial"},"N02":{"party":"BN","leaderVotes":9675,"threshold":1860,"passed":true,"status":"unofficial"},"N03":{"party":"BN","leaderVotes":7619,"threshold":3977,"passed":true,"status":"unofficial"},"N04":{"party":"BN","leaderVotes":8131,"threshold":2251,"passed":true,"status":"unofficial"},"N05":{"party":"BN","leaderVotes":5975,"threshold":2065,"passed":true,"status":"unofficial"},"N06":{"party":"BN","leaderVotes":6443,"threshold":9838,"passed":false,"status":"unofficial"},"N07":{"party":"BN","leaderVotes":3743,"threshold":6455,"passed":false,"status":"unofficial"},"N08":{"party":"BN","leaderVotes":5529,"threshold":5723,"passed":false,"status":"unofficial"},"N09":{"party":"BN","leaderVotes":5095,"threshold":10675,"passed":false,"status":"unofficial"},"N10":{"party":"BN","leaderVotes":10712,"threshold":3590,"passed":true,"status":"unofficial"},"N11":{"party":"BN","leaderVotes":13558,"threshold":7485,"passed":true,"status":"unofficial"},"N12":{"party":"BN","leaderVotes":3661,"threshold":11467,"passed":false,"status":"unofficial"},"N13":{"party":"PN","leaderVotes":8573,"threshold":24544,"passed":false,"status":"unofficial"},"N14":{"party":"BN","leaderVotes":4871,"threshold":14178,"passed":false,"status":"unofficial"},"N15":{"party":"BN","leaderVotes":6024,"threshold":12095,"passed":false,"status":"unofficial"},"N16":{"party":"PH","leaderVotes":740,"threshold":24421,"passed":false,"status":"unofficial"},"N17":{"party":"PN","leaderVotes":5242,"threshold":19638,"passed":false,"status":"unofficial"},"N18":{"party":"BN","leaderVotes":7820,"threshold":11770,"passed":false,"status":"unofficial"},"N19":{"party":"PH","leaderVotes":10644,"threshold":24756,"passed":false,"status":"unofficial"},"N20":{"party":"PH","leaderVotes":13527,"threshold":6489,"passed":true,"status":"unofficial"},"N21":{"party":"BN","leaderVotes":13995,"threshold":6175,"passed":true,"status":"unofficial"},"N22":{"party":"PH","leaderVotes":8874,"threshold":3344,"passed":true,"status":"unofficial"},"N23":{"party":"BN","leaderVotes":10182,"threshold":10928,"passed":false,"status":"unofficial"},"N24":{"party":"PN","leaderVotes":6051,"threshold":11098,"passed":false,"status":"unofficial"},"N25":{"party":"BN","leaderVotes":9163,"threshold":3552,"passed":true,"status":"unofficial"},"N26":{"party":"BN","leaderVotes":12160,"threshold":4556,"passed":true,"status":"unofficial"},"N27":{"party":"BN","leaderVotes":10158,"threshold":4628,"passed":true,"status":"unofficial"},"N28":{"party":"BN","leaderVotes":7838,"threshold":4070,"passed":true,"status":"unofficial"}}}</script>
 <script id="seed" type="application/json">[{"id":"N01","name":"Kuala Linggi","candidates":[{"party":"BN","name":"Datuk Rosli Abdullah"},{"party":"PH","name":"Muhammad Mukhlisul Mubin Julaisapiyah"},{"party":"BERSAMA","name":"Nur Farhana Hamzah"}]},{"id":"N02","name":"Tanjung Bidara","candidates":[{"party":"BN","name":"Datuk Seri Dr Ab Rauf Yusoh"},{"party":"PH","name":"Mohd Yunazri Mustamiri"}]},{"id":"N03","name":"Ayer Limau","candidates":[{"party":"BN","name":"Datuk Hameed Mytheen Kunju Basheer"},{"party":"PH","name":"Mejar (B) Jaimi Dimon"}]},{"id":"N04","name":"Lendu","candidates":[{"party":"BN","name":"Datuk Abdul Hakim Abdul Wahid"},{"party":"BERSATU","name":"Nazri Ramli"}]},{"id":"N05","name":"Taboh Naning","candidates":[{"party":"BN","name":"Datuk Zulkiflee Md. Zain"},{"party":"PH","name":"Junainah Sahat"}]},{"id":"N06","name":"Rembia","candidates":[{"party":"BN","name":"Ahmad Norazril Abd Aziz"},{"party":"PH","name":"Mohd Khuzairie Mohd Kamal Kannan"},{"party":"BERSAMA","name":"Mohamed Aman Akil Abdul Talib"}]},{"id":"N07","name":"Gadek","candidates":[{"party":"BN","name":"S Nadarajah"},{"party":"PH","name":"Jegasilan K"},{"party":"BERSAMA","name":"B. Laveen"},{"party":"PUTRA","name":"Laila Norinda Maon"}]},{"id":"N08","name":"Machap Jaya","candidates":[{"party":"BN","name":"Datuk Ngwe Hee Sem"},{"party":"PH","name":"Datuk Ginie Lim Siew Lin"},{"party":"BERSAMA","name":"Prasanth Kumar Brakasam"}]},{"id":"N09","name":"Durian Tunggal","candidates":[{"party":"BN","name":"Datuk Dr Mustafa Musa"},{"party":"PH","name":"Datuk Ashraf Mukhlis Minghat"}]},{"id":"N10","name":"Asahan","candidates":[{"party":"BN","name":"Datuk Fairul Nizam Roslan"},{"party":"PH","name":"Denesh A/L Palasubraniam"}]},{"id":"N11","name":"Sungai Udang","candidates":[{"party":"BN","name":"Datuk Rais Yasin"},{"party":"BERSAMA","name":"Mohd Ridzuan Abdul Rahman"},{"party":"BERSATU","name":"Mejar (B) Abdullah Mahadi"}]},{"id":"N12","name":"Pantai Kundor","candidates":[{"party":"BN","name":"Datuk Tuminah Kadi"},{"party":"BERSATU","name":"Datin Seri Dr Asmah Samat"}]},{"id":"N13","name":"Paya Rumput","candidates":[{"party":"PH","name":"Datuk Azman Abidin"},{"party":"PN","name":"Rafie Ahmad"},{"party":"BERSAMA","name":"Abdul Rashid Abu Bakar"}]},{"id":"N14","name":"Kelebang","candidates":[{"party":"BN","name":"Datuk Lim Ban Hong"},{"party":"PH","name":"Farzana Hayani Mohd Nasir"},{"party":"BERSAMA","name":"Young Jie Yu"},{"party":"BERSATU","name":"Datuk Seri Mohamad Ali Mohamad"}]},{"id":"N15","name":"Pengkalan Batu","candidates":[{"party":"BN","name":"Siti Aisyah Mahmood"},{"party":"PH","name":"Jason Tze-Xi Nathan"},{"party":"BERSAMA","name":"Goh Han Koon"},{"party":"BERSATU","name":"Datuk Norhizam Hassan Baktee"}]},{"id":"N16","name":"Ayer Keroh","candidates":[{"party":"PH","name":"Kerk Chee Yee"},{"party":"PN","name":"Datuk Seri Michael Gan"},{"party":"BERSAMA","name":"Muhammad Muhaimin Lau Abdullah"},{"party":"BERSATU","name":"Mohd Hamnaim Mohamad"}]},{"id":"N17","name":"Bukit Katil","candidates":[{"party":"PH","name":"Adly Zahari"},{"party":"PN","name":"Mohd Ridzuan Sarif"},{"party":"BERSAMA","name":"Dr Aliza Che Amran"},{"party":"BEBAS","name":"Abu Bakar Sabudin"}]},{"id":"N18","name":"Ayer Molek","candidates":[{"party":"BN","name":"Datuk Mohd Ridhwan Mohd Ali"},{"party":"PH","name":"Muhammad Hakimin Mokhtar"}]},{"id":"N19","name":"Kesidang","candidates":[{"party":"PH","name":"Allex Seah Shoo Chin"},{"party":"PN","name":"Albert Kok"},{"party":"BERSAMA","name":"Dr Bryan Kek Kit Hun"}]},{"id":"N20","name":"Kota Laksamana","candidates":[{"party":"BN","name":"Melvin Chua Kew Wae"},{"party":"PH","name":"Low Chee Leong"},{"party":"BERSAMA","name":"Ethan Lim Zhi Hao"}]},{"id":"N21","name":"Duyong","candidates":[{"party":"BN","name":"Datuk Mohd Noor Helmy Abdul Halem"},{"party":"PH","name":"Poo Long Suan"}]},{"id":"N22","name":"Bandar Hilir","candidates":[{"party":"BN","name":"Jasmine Lok Huey Yee"},{"party":"PH","name":"Leng Chau Yen"},{"party":"BERSAMA","name":"Ir Dr Mohd Nor Rashidi Ab. Jalil"}]},{"id":"N23","name":"Telok Mas","candidates":[{"party":"BN","name":"Datuk Abdul Razak Abdul Rahman"},{"party":"PH","name":"Kapten (B) Mohamad Jaafar"},{"party":"BERSAMA","name":"Muhammad Hazwan Mustafa"}]},{"id":"N24","name":"Bemban","candidates":[{"party":"PN","name":"Dr Mohd Yadzil Yaakub"},{"party":"BERSAMA","name":"Dr Muhammad Solehin Saleh"},{"party":"BERSATU","name":"Muhammad Rabaie Ab Hamid"},{"party":"BEBAS","name":"Abd Halim Said"}]},{"id":"N25","name":"Rim","candidates":[{"party":"BN","name":"Datuk Khaidhirah Abu Zahar"},{"party":"PH","name":"Esma Eazreen Husin"}]},{"id":"N26","name":"Serkam","candidates":[{"party":"BN","name":"Datuk Azman Abdullah"},{"party":"PH","name":"Muhammad Faiq Azman"},{"party":"BERSAMA","name":"Muhamad Saffie Md Yasan"}]},{"id":"N27","name":"Merlimau","candidates":[{"party":"BN","name":"Datuk Dr Muhamad Akmal Saleh"},{"party":"PH","name":"Rahayu Hamzah"}]},{"id":"N28","name":"Sungai Rambai","candidates":[{"party":"BN","name":"Jezlee Pit"},{"party":"PH","name":"Aminuddin Abdul Jalil"},{"party":"BEBAS","name":"Norrizan Jantan"}]}]</script>
 <script>
 'use strict';
@@ -238,110 +254,106 @@ async function loadVTO(manual=false){
 $('vtoRefresh').addEventListener('click',()=>loadVTO(true));
 
 
-/* Clean visual rendering with verified official and clearly marked media standings. */
-let mediaSeats={},mediaMeta=null;
-function liveSeat(s){
- const official=liveRecords[s.id];
- const media=mediaSeats[s.id];
- const early=preliminaryRecords[s.id];
- const local=record(s);
- if(official){const w=computed(s);return {state:"official",party:w?.winner.party||null,record:official,detail:"Rasmi",provenance:"SPR"};}
- if(early){
-   const totals=s.candidates.map((c,i)=>({party:c.party,v:Number(early.votes?.[String(i)]||0)})).sort((a,b)=>b.v-a.v);
-   const leader=totals.length>1&&totals[0].v>totals[1].v?totals[0].party:null;
-   return {state:"unofficial",party:leader||media?.party||null,record:early,detail:"Undi sementara",provenance:"MySPR"};
- }
- if(media){return {state:"unofficial",party:media.party,record:null,detail:"Tidak rasmi",provenance:"Bernama"};}
- if(operator&&local.status!=="none"&&computed(s)){return {state:"unofficial",party:computed(s).winner.party,record:local,detail:"Operator setempat",provenance:"operator"};}
- return {state:"none",party:null,record:null,detail:"Menunggu",provenance:""};
+/* MyUndi vote-count dashboard, with original screenshot as offline fallback. */
+let myundiData=JSON.parse(document.getElementById('snapshotMyUndi').textContent);
+const initialSnapshot=JSON.parse(document.getElementById('snapshotMyUndi').textContent);
+const num=n=>Number(n).toLocaleString('ms-MY');
+function voteSeat(s){
+ const x=myundiData?.seats?.[s.id];
+ if(!x||!s.candidates.some(c=>c.party===x.party))return null;
+ if(!Number.isSafeInteger(x.leaderVotes)||x.leaderVotes<0)return null;
+ if(x.threshold!==null&&x.threshold!==undefined&&(!Number.isSafeInteger(x.threshold)||x.threshold<0))return null;
+ return x;
 }
-function scoreboard(){
- const counts=Object.fromEntries(parties.map(p=>[p,0]));let reported=0,official=0,unofficial=0;
- for(const seat of SEATS){const st=liveSeat(seat);if(st.state==="none")continue;reported++;if(st.state==="official")official++;else unofficial++;if(st.party)counts[st.party]++;}
- return {counts,reported,official,unofficial};
+function voteSummary(){
+ const leading=Object.fromEntries(parties.map(p=>[p,0]));
+ const passed=Object.fromEntries(parties.map(p=>[p,0]));
+ let reported=0,passCount=0,pendingCount=0;
+ for(const seat of SEATS){const v=voteSeat(seat);if(!v)continue;reported++;leading[v.party]++;
+   if(v.passed===true){passCount++;passed[v.party]++}else pendingCount++;
+ }
+ return {leading,passed,reported,passCount,pendingCount};
+}
+function showTime(s){
+ if(!s)return '';
+ const date=new Date(s);
+ return Number.isFinite(date.getTime())?date.toLocaleTimeString('ms-MY',{timeZone:'Asia/Kuala_Lumpur',hour:'numeric',minute:'2-digit',hour12:true}):'';
 }
 renderStats=function(){
- const s=scoreboard();
- $('reported').innerHTML=String(s.reported)+'<span>/28</span>';
- $('official').textContent=String(s.official);
- $('reportSub').textContent=s.unofficial+' tidak rasmi';
- const list=[...Object.entries(s.counts)].filter(([p,n])=>n>0||['BN','PH','PN'].includes(p)).sort((a,b)=>b[1]-a[1]);
- const primary=['BN','PH','PN'],extra=list.filter(([p,n])=>!primary.includes(p)&&n>0).map(x=>x[0]);
- $('partySnapshot').innerHTML=[...primary,...extra].map(p=>'<div class="party-live" style="--pc:'+partyColor(p)+'"><b>'+esc(p)+'</b><strong>'+s.counts[p]+'</strong></div>').join('');
- $('partyBoard').innerHTML=Object.entries(s.counts).sort((a,b)=>b[1]-a[1]).map(([p,n])=>'<div class="party-row"><span class="party-label" style="color:'+partyColor(p)+'">'+esc(p)+'</span><div class="track"><div class="fill" style="width:'+(n/28*100)+'%;background:'+partyColor(p)+'"></div></div><span class="party-num">'+n+'</span></div>').join('');
- $('leaderText').textContent=s.reported+' daripada 28 kerusi dilaporkan · '+s.official+' rasmi';
- $('barLabel').textContent='2026 · '+s.reported+'/28';
- $('bar2026').innerHTML=Object.entries(s.counts).map(([p,n])=>'<span title="'+esc(p)+' '+n+'" style="width:'+(n/28*100)+'%;background:'+partyColor(p)+'"></span>').join('');
- $('summarySourceStatus').textContent=s.unofficial?'TIDAK RASMI':s.official?'RASMI':'MENUNGGU';
- const stamp=mediaMeta?.retrievedAt||feedMeta?.syncedAt;
- $('summaryUpdate').textContent=stamp?'Dikemas kini '+new Date(stamp).toLocaleTimeString('ms-MY',{timeZone:'Asia/Kuala_Lumpur',hour:'numeric',minute:'2-digit',hour12:true}):'Menunggu kemas kini';
- $('savedLabel').textContent=s.unofficial+' tidak rasmi, '+s.official+' rasmi';
+ const st=voteSummary();
+ $('reported').innerHTML=st.passCount+'<span>/28</span>';
+ $('official').textContent='15';
+ $('reportSub').textContent='Mendahului: BN '+st.leading.BN+' · PH '+st.leading.PH+' · PN '+st.leading.PN;
+ const pkeys=['BN','PH','PN',...parties.filter(p=>!['BN','PH','PN'].includes(p)&&st.passed[p]>0)];
+ $('partySnapshot').innerHTML=pkeys.map(p=>'<div class="party-live" style="--pc:'+partyColor(p)+'"><b>'+esc(p)+'</b><strong>'+st.passed[p]+'</strong></div>').join('');
+ $('partyBoard').innerHTML=Object.entries(st.leading).sort((a,b)=>b[1]-a[1]).map(([p,n])=>'<div class="party-row"><span class="party-label" style="color:'+partyColor(p)+'">'+esc(p)+'</span><div class="track"><div class="fill" style="width:'+(n/28*100)+'%;background:'+partyColor(p)+'"></div></div><span class="party-num">'+n+'</span></div>').join('');
+ $('leaderText').textContent='Mendahului '+st.reported+'/28 · Lepas ambang '+st.passCount;
+ $('barLabel').textContent='2026 · '+st.reported+' kedudukan tidak rasmi';
+ $('bar2026').innerHTML=Object.entries(st.leading).map(([p,n])=>'<span title="'+esc(p)+': '+n+'" style="width:'+(n/28*100)+'%;background:'+partyColor(p)+'"></span>').join('');
+ $('summarySourceStatus').textContent='TIDAK RASMI';
+ const refreshed=myundiData?.fetchedAt;
+ $('summaryUpdate').textContent=refreshed?'Diperiksa '+showTime(refreshed):'Snapshot '+(myundiData?.snapshotWindow||'7:59 malam');
+ $('savedLabel').textContent=st.passCount+' lepasi ambang · '+st.pendingCount+' belum';
 };
 renderCards=function(){
  const q=$('search').value.toLocaleLowerCase('ms').trim(),filter=$('statusFilter').value,type=$('typeFilter').value;
- const seats=SEATS.slice().sort((a,b)=>{
-   const stA=liveSeat(a),stB=liveSeat(b);
-   const rank=s=>s.state==="official"?0:s.state==="unofficial"?1:2;
-   return rank(stA)-rank(stB)||a.id.localeCompare(b.id);
- });
  let shown=0;const cards=[];
- for(const s of seats){
-   const st=liveSeat(s),r=st.record;
-   if(filter!=="all"&&st.state!==filter)continue;
-   if(type!=="all"&&s.candidates.length!==Number(type))continue;
+ for(const s of SEATS){
+   const row=voteSeat(s);
+   if(filter==='passed'&&row?.passed!==true)continue;
+   if(filter==='pending'&&row?.passed===true)continue;
+   if(type!=='all'&&s.candidates.length!==Number(type))continue;
    const hay=(s.id+' '+s.name+' '+s.candidates.map(c=>c.party+' '+c.name).join(' ')).toLocaleLowerCase('ms');
    if(q&&!hay.includes(q))continue;
    shown++;
-   const c=st.party?s.candidates.find(c=>c.party===st.party):null;
-   const primary=st.party||'—';
-   const valueRecord=(r&&r.votes)?r:null;
-   const rows=valueRecord?s.candidates.map((c,i)=>{
-     const v=valueRecord.votes[String(i)];
-     return Number.isSafeInteger(v)?'<div class="card-vote"><span>'+esc(c.party+' · '+c.name)+'</span><b>'+v.toLocaleString('ms-MY')+'</b></div>':'';
-   }).join(''):'';
-   const sub=st.state==='none'?'Keputusan belum tersedia':c?c.name:'Angka undi sementara';
-   const stateClass=st.state==='official'?'official':st.state==='unofficial'?'unofficial':'';
-   cards.push('<article class="seat" style="--seat-edge:'+(st.party?partyColor(st.party):'#34485c')+'"><div class="inner"><div class="seat-top"><span class="seat-code">'+esc(s.id)+'</span><span class="seat-status '+stateClass+'">'+esc(st.detail)+'</span></div><h3>'+esc(s.name)+'</h3><div class="card-lead"><strong style="--lead-color:'+(st.party?partyColor(st.party):'#8598ac')+'">'+esc(primary)+'</strong><small>'+(st.state==='none'?'Belum lapor':'Dilaporkan')+'</small></div><div class="subline '+(st.state==='none'?'empty':'')+'">'+esc(sub)+'</div>'+(rows?'<div class="card-votes">'+rows+'</div>':'')+'</div><div class="seat-footer"><span>'+s.candidates.length+' calon</span><button data-seat="'+esc(s.id)+'">Lihat calon ↗</button></div></article>');
+   const party=row?.party||'—', candidate=s.candidates.find(c=>c.party===party);
+   const state=row?.passed===true?'LEPAS':row?'BELUM':'—';
+   const stclass=row?.passed===true?'status-pass':'status-wait';
+   const line=row?(candidate?.name||'Calon mendahului'):'Tiada angka undi';
+   const displayVotes=row?num(row.leaderVotes):'—', threshold=row?.threshold!=null?num(row.threshold):'—';
+   const timeNote=row?.observedAt?'Diperiksa '+showTime(row.observedAt):'Snapshot 7:59 MLM';
+   const grid='<div class="vote-stats"><div class="vote-stat"><small>UNDI</small><b>'+displayVotes+'</b></div><div class="vote-stat"><small>AMBANG</small><b>'+threshold+'</b></div></div>';
+   cards.push('<article class="seat" style="--seat-edge:'+(row?partyColor(party):'#34485c')+'"><div class="inner"><div class="seat-top"><span class="seat-code">'+esc(s.id)+'</span><span class="seat-status '+stclass+'">'+state+'</span></div><h3>'+esc(s.name)+'</h3><div class="card-lead"><strong style="--lead-color:'+partyColor(party)+'">'+esc(party)+'</strong><small>mendahului</small></div><div class="subline">'+esc(line)+'</div>'+grid+'</div><div class="seat-footer"><span>'+esc(timeNote)+'</span><button data-seat="'+esc(s.id)+'">Calon ↗</button></div></article>');
  }
- $('seats').innerHTML=cards.join('')||'<p class="muted">Tiada keputusan untuk carian ini.</p>';
+ $('seats').innerHTML=cards.join('')||'<p class="muted">Tiada DUN sepadan.</p>';
  $('resultCount').textContent=shown+' / 28';
 };
 updateFeedUI=function(){
- const s=scoreboard();
- const status=feedState==="error"?"Semakan data terganggu":s.reported?"Keputusan sedang dikemas kini":"Menunggu keputusan";
- $('feedHeading').textContent=status;
- $('feedDetail').textContent=s.reported+' kerusi dilaporkan · '+s.official+' rasmi · '+s.unofficial+' tidak rasmi';
- $('topFeedLabel').textContent=s.reported?'TERKINI · '+s.reported+'/28':'MENUNGGU';
+ const s=voteSummary();
+ $('feedHeading').textContent=s.passCount+' LEPAS AMBANG';
+ $('feedDetail').textContent=s.pendingCount+' belum lepas · '+s.reported+' DUN';
+ $('topFeedLabel').textContent='TIDAK RASMI';
  $('feedDot').className='feed-dot '+(s.reported?'ready':'');
- $('datestamp').textContent='SPR '+(feedMeta?.syncedAt||'belum diselaraskan')+' · Berita '+(mediaMeta?.retrievedAt||'belum diselaraskan');
+ $('datestamp').textContent='Snapshot '+(myundiData?.snapshotWindow||'7:59 malam')+' · 14 November 2026'+(myundiData?.fetchedAt?' · Semakan '+myundiData.fetchedAt:'');
 };
-const originalOpenSeat=openSeat;
+const baseOpenSeat=openSeat;
 openSeat=function(id){
- originalOpenSeat(id);
- const seat=SEATS.find(s=>s.id===id),m=mediaSeats[id];
- if(seat&&m&&!liveRecords[id]&&!preliminaryRecords[id]){
-   $('modalIntro').textContent='Kedudukan '+m.party+' dilaporkan secara TIDAK RASMI. Angka undi terperinci belum diterima.';
+ baseOpenSeat(id);
+ const s=SEATS.find(s=>s.id===id),row=s&&voteSeat(s);
+ if(row){
+  $('modalIntro').textContent=(row.passed?'LEPAS':'BELUM')+' · '+row.party+' · '+num(row.leaderVotes)+' undi · ambang '+(row.threshold!=null?num(row.threshold):'belum tersedia')+' · Kiraan tidak rasmi';
  }
 };
-async function loadMedia(){
+async function loadMyUndi(manual=false){
  try{
-  const r=await fetch('./data/bernama.json?b='+Date.now(),{cache:'no-store'});
-  if(!r.ok)throw new Error('HTTP '+r.status);
-  const data=await r.json();
-  if(data?.schema!=='prn-melaka-bernama-v1'||data.status!=='unofficial'||!data.seats||typeof data.seats!=='object')throw new Error('Data tidak sah');
-  const clean={};
-  for(const s of SEATS){
-    const candidate=data.seats[s.id];
-    if(candidate?.status!=='unofficial'||!s.candidates.some(c=>c.party===candidate.party))continue;
-    clean[s.id]={party:candidate.party,status:'unofficial'};
+  const r=await fetch('./data/myundi.json?t='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw Error('HTTP '+r.status);
+  const value=await r.json();
+  if(value?.schema!=='prn-melaka-myundi-v1'||value.status!=='unofficial'||!value.seats||typeof value.seats!=='object')throw Error('Format keputusan tak sah');
+  let valid=0;
+  for(const s of SEATS){const d=value.seats[s.id];if(!d)continue;
+    if(s.candidates.some(c=>c.party===d.party)&&Number.isSafeInteger(d.leaderVotes)&&d.leaderVotes>=0)valid++;
   }
-  if(Object.keys(clean).length>=Object.keys(mediaSeats).length){mediaSeats=clean;mediaMeta=data;}
- }catch(err){
-  if(!mediaMeta)console.warn('Tidak dapat memuatkan keputusan sandaran',err);
+  if(valid<28)throw Error('Data tidak lengkap: '+valid+'/28');
+  myundiData=value;
+  if(manual)toast('Statistik dikemas kini daripada cache. Semak masa snapshot.');
+ }catch(e){
+  if(manual)toast('Menggunakan snapshot terakhir yang ada.');
+  console.warn('Data MyUndi belum tersedia, snapshot asal digunakan',e);
  }
- updateFeedUI();render();
+ render();updateFeedUI();
 }
+load();render();updateFeedUI();loadMyUndi();loadVTO();setInterval(()=>{loadMyUndi();},60000);
 
-load();render();updateFeedUI();loadFeed();loadVTO();loadMedia();setInterval(()=>{loadFeed();loadVTO();loadMedia();},60000);
 </script>
 </body></html>
