@@ -2,7 +2,7 @@ import sys
 import unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"scripts"))
-from sync_spr import SEED,match_candidates,token_of,election_option,seat_code,vote_value
+from sync_spr import SEED,match_candidates,extract_candidates,token_of,election_option,seat_code,vote_value
 
 class Tests(unittest.TestCase):
     def test_token(self):
@@ -14,8 +14,25 @@ class Tests(unittest.TestCase):
             raw=[{"NamaUndiCalon":c["name"],"BilUndi":10000-i*100,
                   "StatusCalon":"MNG" if i==0 else "KLH"} for i,c in enumerate(seat["candidates"])]
             mapped,reason=match_candidates(seat,raw)
-            self.assertEqual(reason,"",seat["id"]+": "+reason)
+            self.assertEqual(reason,"official",seat["id"]+": "+reason)
             self.assertEqual(len(mapped),len(raw))
+    def test_nested_candidate_array(self):
+        seat=SEED[0]
+        raw=[{"NamaUndiCalon":c["name"],"BilUndi":1000-i*100,"StatusCalon":""}
+             for i,c in enumerate(seat["candidates"])]
+        actual,description=extract_candidates({"pilihanraya":[{"result":{"penamaan":raw}}]},len(raw))
+        self.assertEqual(len(actual),len(raw))
+        self.assertEqual(description,"")
+        votes,level=match_candidates(seat,raw,require_winner=False)
+        self.assertEqual(level,"preliminary")
+        self.assertIsNotNone(votes)
+    def test_zero_votes_are_not_published(self):
+        seat=SEED[0]
+        raw=[{"NamaUndiCalon":c["name"],"BilUndi":"0","StatusCalon":""}
+             for c in seat["candidates"]]
+        votes,level=match_candidates(seat,raw,require_winner=False)
+        self.assertIsNone(votes)
+        self.assertEqual(level,"no votes yet")
     def test_no_winner(self):
         seat=SEED[0]
         raw=[{"NamaUndiCalon":c["name"],"BilUndi":1000-i,"StatusCalon":""} for i,c in enumerate(seat["candidates"])]
