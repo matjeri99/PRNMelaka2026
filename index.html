@@ -73,6 +73,10 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
 @media(max-width:500px){.vote-stats{gap:5px;margin:10px 0 0}.vote-stat{padding:8px 6px}.vote-stat>b{font-size:15px}.seat .inner{padding:12px 9px 8px}.seat{min-height:190px}.seat h3{font-size:15px}.seat .card-lead strong{font-size:23px}.seat .subline{font-size:10px}.seat .seat-footer{font-size:9px;padding:8px 9px}}
 @media(min-width:501px) and (max-width:800px){.vote-stat>b{font-size:19px}}
 
+#awaniOfficial{margin-bottom:12px;border-color:#3c655e}
+#awaniOfficial[hidden]{display:none!important}
+#awaniOfficial .headline-top .tag-current{background:#14392d;color:#74e6c3}
+#awaniOfficial .parties-live{gap:7px}
 </style>
 </head>
 <body>
@@ -82,6 +86,15 @@ body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#
 </div></header>
 <main class="wrap clean-main">
   <section class="quick-head"><div><div class="tiny-label">14 NOVEMBER 2026 · 28 DUN</div><h1>MELAKA <span>2026</span></h1></div><div class="quick-status"><b id="feedHeading">Sedang menyemak...</b><small id="feedDetail">Memuatkan keputusan</small></div></section>
+
+  <section class="headline-results" id="awaniOfficial" aria-label="Keputusan rasmi SPR dilaporkan AWANI" hidden>
+    <div class="headline-top"><span>KERUSI RASMI SPR</span><span class="tag-current">AWANI</span></div>
+    <div class="tally-layout">
+      <div class="count-major"><strong id="awaniOfficialCount">—</strong><small>KERUSI DIUMUMKAN / 28</small></div>
+      <div class="parties-live" id="awaniPartyBoard"></div>
+    </div>
+    <div class="tally-foot"><span id="awaniOfficialAsOf">—</span><span id="awaniOfficialPublished">—</span></div>
+  </section>
 
   <section class="headline-results" aria-label="Keputusan pilihan raya terkini">
     <div class="headline-top"><span>KEDUDUKAN UNDI</span><span class="tag-current" id="summarySourceStatus">TIDAK RASMI</span></div>
@@ -353,7 +366,37 @@ async function loadMyUndi(manual=false){
  }
  render();updateFeedUI();
 }
+
+async function loadAwaniOfficial(){
+ try{
+  const response=await fetch('./data/awani.json?_='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw Error('HTTP '+response.status);
+  const data=await response.json();
+  const parties=data?.parties;
+  if(data?.schema!=='prn-melaka-awani-v1'||data.status!=='official_reported'||
+     data.totalSeats!==28||!parties||!['BN','PH','PN'].every(p=>Number.isSafeInteger(parties[p])&&parties[p]>=0)||
+     Object.values(parties).some(n=>!Number.isSafeInteger(n)||n<0)||
+     Object.values(parties).reduce((a,b)=>a+b,0)!==data.officialCount||
+     data.officialCount>28)throw Error('Invalid official summary');
+  document.getElementById('awaniOfficialCount').textContent=data.officialCount+'/28';
+  const board=document.getElementById('awaniPartyBoard');board.replaceChildren();
+  for(const p of ['BN','PH','PN']){
+   const d=document.createElement('div');d.className='party-live';
+   const name=document.createElement('b');name.textContent=p;
+   const n=document.createElement('strong');n.textContent=String(parties[p]);
+   d.append(name,n);board.append(d);
+  }
+  const t=value=>{const d=new Date(value);return Number.isNaN(d.getTime())?'—':
+    d.toLocaleTimeString('ms-MY',{timeZone:'Asia/Kuala_Lumpur',hour:'2-digit',minute:'2-digit'});};
+  const asof=data.announcedAsOf?'SPR setakat '+t(data.announcedAsOf):'Berdasarkan pengumuman SPR';
+  document.getElementById('awaniOfficialAsOf').textContent=asof;
+  document.getElementById('awaniOfficialPublished').textContent='Laporan AWANI '+t(data.publishedAt);
+  document.getElementById('awaniOfficial').hidden=false;
+ }catch(err){console.warn('AWANI official summary unavailable; retaining last visible summary',err);}
+}
+
 load();render();updateFeedUI();loadMyUndi();loadVTO();setInterval(()=>{loadMyUndi();},60000);
+loadAwaniOfficial();setInterval(loadAwaniOfficial,60000);
 
 </script>
 </body></html>
