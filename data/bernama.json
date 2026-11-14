@@ -1,0 +1,124 @@
+{
+  "schema": "prn-melaka-bernama-v1",
+  "election": "PRN Melaka 2026",
+  "status": "unofficial",
+  "source": "https://election.bernama.com/prn/melaka/2026/",
+  "sourceLabel": "Portal Pilihan Raya BERNAMA",
+  "asOfDay": "2026-11-14",
+  "retrievedAt": "2026-11-14T12:34:43.197Z",
+  "reportedCount": 22,
+  "officialCount": 0,
+  "seats": {
+    "N01": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N02": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N03": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N04": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N05": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N06": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N07": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N09": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N10": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N11": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N14": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N18": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N19": {
+      "party": "PH",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N20": {
+      "party": "PH",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N21": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N22": {
+      "party": "PH",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N23": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N24": {
+      "party": "PN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N25": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N26": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N27": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    },
+    "N28": {
+      "party": "BN",
+      "status": "unofficial",
+      "votes": null
+    }
+  },
+  "notes": "Seat-level party standings shown by Bernama; unofficial. No detailed candidate vote totals supplied. Not a SPR declaration."
+}
