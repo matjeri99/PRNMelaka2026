@@ -1,0 +1,486 @@
+[
+  {
+    "id": "N01",
+    "name": "Kuala Linggi",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Rosli Abdullah"
+      },
+      {
+        "party": "PH",
+        "name": "Muhammad Mukhlisul Mubin Julaisapiyah"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Nur Farhana Hamzah"
+      }
+    ]
+  },
+  {
+    "id": "N02",
+    "name": "Tanjung Bidara",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Seri Dr Ab Rauf Yusoh"
+      },
+      {
+        "party": "PH",
+        "name": "Mohd Yunazri Mustamiri"
+      }
+    ]
+  },
+  {
+    "id": "N03",
+    "name": "Ayer Limau",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Hameed Mytheen Kunju Basheer"
+      },
+      {
+        "party": "PH",
+        "name": "Mejar (B) Jaimi Dimon"
+      }
+    ]
+  },
+  {
+    "id": "N04",
+    "name": "Lendu",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Abdul Hakim Abdul Wahid"
+      },
+      {
+        "party": "BERSATU",
+        "name": "Nazri Ramli"
+      }
+    ]
+  },
+  {
+    "id": "N05",
+    "name": "Taboh Naning",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Zulkiflee Md. Zain"
+      },
+      {
+        "party": "PH",
+        "name": "Junainah Sahat"
+      }
+    ]
+  },
+  {
+    "id": "N06",
+    "name": "Rembia",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Ahmad Norazril Abd Aziz"
+      },
+      {
+        "party": "PH",
+        "name": "Mohd Khuzairie Mohd Kamal Kannan"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Mohamed Aman Akil Abdul Talib"
+      }
+    ]
+  },
+  {
+    "id": "N07",
+    "name": "Gadek",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "S Nadarajah"
+      },
+      {
+        "party": "PH",
+        "name": "Jegasilan K"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "B. Laveen"
+      },
+      {
+        "party": "PUTRA",
+        "name": "Laila Norinda Maon"
+      }
+    ]
+  },
+  {
+    "id": "N08",
+    "name": "Machap Jaya",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Ngwe Hee Sem"
+      },
+      {
+        "party": "PH",
+        "name": "Datuk Ginie Lim Siew Lin"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Prasanth Kumar Brakasam"
+      }
+    ]
+  },
+  {
+    "id": "N09",
+    "name": "Durian Tunggal",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Dr Mustafa Musa"
+      },
+      {
+        "party": "PH",
+        "name": "Datuk Ashraf Mukhlis Minghat"
+      }
+    ]
+  },
+  {
+    "id": "N10",
+    "name": "Asahan",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Fairul Nizam Roslan"
+      },
+      {
+        "party": "PH",
+        "name": "Denesh A/L Palasubraniam"
+      }
+    ]
+  },
+  {
+    "id": "N11",
+    "name": "Sungai Udang",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Rais Yasin"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Mohd Ridzuan Abdul Rahman"
+      },
+      {
+        "party": "BERSATU",
+        "name": "Mejar (B) Abdullah Mahadi"
+      }
+    ]
+  },
+  {
+    "id": "N12",
+    "name": "Pantai Kundor",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Tuminah Kadi"
+      },
+      {
+        "party": "BERSATU",
+        "name": "Datin Seri Dr Asmah Samat"
+      }
+    ]
+  },
+  {
+    "id": "N13",
+    "name": "Paya Rumput",
+    "candidates": [
+      {
+        "party": "PH",
+        "name": "Datuk Azman Abidin"
+      },
+      {
+        "party": "PN",
+        "name": "Rafie Ahmad"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Abdul Rashid Abu Bakar"
+      }
+    ]
+  },
+  {
+    "id": "N14",
+    "name": "Kelebang",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Lim Ban Hong"
+      },
+      {
+        "party": "PH",
+        "name": "Farzana Hayani Mohd Nasir"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Young Jie Yu"
+      },
+      {
+        "party": "BERSATU",
+        "name": "Datuk Seri Mohamad Ali Mohamad"
+      }
+    ]
+  },
+  {
+    "id": "N15",
+    "name": "Pengkalan Batu",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Siti Aisyah Mahmood"
+      },
+      {
+        "party": "PH",
+        "name": "Jason Tze-Xi Nathan"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Goh Han Koon"
+      },
+      {
+        "party": "BERSATU",
+        "name": "Datuk Norhizam Hassan Baktee"
+      }
+    ]
+  },
+  {
+    "id": "N16",
+    "name": "Ayer Keroh",
+    "candidates": [
+      {
+        "party": "PH",
+        "name": "Kerk Chee Yee"
+      },
+      {
+        "party": "PN",
+        "name": "Datuk Seri Michael Gan"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Muhammad Muhaimin Lau Abdullah"
+      },
+      {
+        "party": "BERSATU",
+        "name": "Mohd Hamnaim Mohamad"
+      }
+    ]
+  },
+  {
+    "id": "N17",
+    "name": "Bukit Katil",
+    "candidates": [
+      {
+        "party": "PH",
+        "name": "Adly Zahari"
+      },
+      {
+        "party": "PN",
+        "name": "Mohd Ridzuan Sarif"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Dr Aliza Che Amran"
+      },
+      {
+        "party": "BEBAS",
+        "name": "Abu Bakar Sabudin"
+      }
+    ]
+  },
+  {
+    "id": "N18",
+    "name": "Ayer Molek",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Mohd Ridhwan Mohd Ali"
+      },
+      {
+        "party": "PH",
+        "name": "Muhammad Hakimin Mokhtar"
+      }
+    ]
+  },
+  {
+    "id": "N19",
+    "name": "Kesidang",
+    "candidates": [
+      {
+        "party": "PH",
+        "name": "Allex Seah Shoo Chin"
+      },
+      {
+        "party": "PN",
+        "name": "Albert Kok"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Dr Bryan Kek Kit Hun"
+      }
+    ]
+  },
+  {
+    "id": "N20",
+    "name": "Kota Laksamana",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Melvin Chua Kew Wae"
+      },
+      {
+        "party": "PH",
+        "name": "Low Chee Leong"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Ethan Lim Zhi Hao"
+      }
+    ]
+  },
+  {
+    "id": "N21",
+    "name": "Duyong",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Mohd Noor Helmy Abdul Halem"
+      },
+      {
+        "party": "PH",
+        "name": "Poo Long Suan"
+      }
+    ]
+  },
+  {
+    "id": "N22",
+    "name": "Bandar Hilir",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Jasmine Lok Huey Yee"
+      },
+      {
+        "party": "PH",
+        "name": "Leng Chau Yen"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Ir Dr Mohd Nor Rashidi Ab. Jalil"
+      }
+    ]
+  },
+  {
+    "id": "N23",
+    "name": "Telok Mas",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Abdul Razak Abdul Rahman"
+      },
+      {
+        "party": "PH",
+        "name": "Kapten (B) Mohamad Jaafar"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Muhammad Hazwan Mustafa"
+      }
+    ]
+  },
+  {
+    "id": "N24",
+    "name": "Bemban",
+    "candidates": [
+      {
+        "party": "PN",
+        "name": "Dr Mohd Yadzil Yaakub"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Dr Muhammad Solehin Saleh"
+      },
+      {
+        "party": "BERSATU",
+        "name": "Muhammad Rabaie Ab Hamid"
+      },
+      {
+        "party": "BEBAS",
+        "name": "Abd Halim Said"
+      }
+    ]
+  },
+  {
+    "id": "N25",
+    "name": "Rim",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Khaidhirah Abu Zahar"
+      },
+      {
+        "party": "PH",
+        "name": "Esma Eazreen Husin"
+      }
+    ]
+  },
+  {
+    "id": "N26",
+    "name": "Serkam",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Azman Abdullah"
+      },
+      {
+        "party": "PH",
+        "name": "Muhammad Faiq Azman"
+      },
+      {
+        "party": "BERSAMA",
+        "name": "Muhamad Saffie Md Yasan"
+      }
+    ]
+  },
+  {
+    "id": "N27",
+    "name": "Merlimau",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Datuk Dr Muhamad Akmal Saleh"
+      },
+      {
+        "party": "PH",
+        "name": "Rahayu Hamzah"
+      }
+    ]
+  },
+  {
+    "id": "N28",
+    "name": "Sungai Rambai",
+    "candidates": [
+      {
+        "party": "BN",
+        "name": "Jezlee Pit"
+      },
+      {
+        "party": "PH",
+        "name": "Aminuddin Abdul Jalil"
+      },
+      {
+        "party": "BEBAS",
+        "name": "Norrizan Jantan"
+      }
+    ]
+  }
+]
