@@ -37,7 +37,7 @@ footer{margin:36px auto 0;border-top:1px solid var(--line);padding:25px 0 40px;c
 <section class="hero"><div><p class="eyebrow">Pusat Pemantauan Pilihan Raya · 14 November 2026</p><h1>MANDAT <span>MELAKA</span><br>KE-16</h1><p class="intro">28 DUN. 79 calon. Keputusan rasmi dipaparkan automatik apabila diterbitkan oleh MySPR Semak. Rekod operator ialah pilihan sandaran.</p></div><div class="hero-note"><b id="datestamp">Memeriksa cache SPR…</b>Semakan berkala setiap 60 saat pada fail data laman.<br><span id="savedLabel">Belum diselaraskan</span></div></section>
 <div class="livefeed" role="status" aria-live="polite"><div><span class="feed-dot" id="feedDot"></span><strong id="feedHeading">Menunggu sambungan cache keputusan SPR</strong><small id="feedDetail">Pautan rasmi dan status kemas kini dipaparkan di sini.</small></div><div><a href="https://dashboard.spr.gov.my/" target="_blank" rel="noopener noreferrer">Keluar mengundi (VTO) SPR ↗</a> &nbsp;·&nbsp; <a href="https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun" target="_blank" rel="noopener noreferrer">Keputusan rasmi SPR ↗</a></div></div><div class="notice"><b>Ketelusan sumber:</b> Data automatik dibaca daripada cache JSON yang dikemas kini oleh GitHub Actions menggunakan panggilan JSON laman MySPR Semak (bukan API awam rasmi yang dijamin SPR). Kemas kini boleh lewat. Jika tiada rekod, paparan akan kekal menunggu — <b>tiada angka kemenangan atau undi direka.</b> Input operator, jika digunakan, ialah sumber berasingan.</div>
 <section class="panel vto-panel" id="kehadiran" aria-label="Kehadiran mengundi PRN Melaka">
-<div class="vto-head"><div><p class="eyebrow">Pemantauan peratus keluar mengundi</p><h2 style="font-size:22px;margin:0">KEHADIRAN MENGUNDI <span class="accent">(VTO)</span></h2><p class="vto-sub" id="vtoUpdated">Memeriksa snapshot sumber…</p></div><div class="head-actions"><a class="btn btn-sm" href="https://dashboard.spr.gov.my/" target="_blank" rel="noopener noreferrer">↗ Dashboard SPR (live)</a><button class="btn btn-sm" type="button" id="vtoRefresh">↻ Semak VTO</button></div></div>
+<div class="vto-head"><div><p class="eyebrow">Pemantauan peratus keluar mengundi</p><h2 style="font-size:22px;margin:0">KEHADIRAN MENGUNDI <span class="accent">(VTO)</span></h2><p class="vto-sub" id="vtoUpdated">Memeriksa snapshot sumber…</p></div><div class="head-actions"><a class="btn btn-sm" href="https://dashboard.spr.gov.my/" target="_blank" rel="noopener noreferrer">↗ Dashboard SPR (live)</a><a class="btn btn-sm" id="vtoSourceUrl" href="https://bernama.com/bm/am/news.php?id=2634246" target="_blank" rel="noopener noreferrer">↗ Sumber Snapshot</a><button class="btn btn-sm" type="button" id="vtoRefresh">↻ Semak VTO</button></div></div>
 <div class="vto-cards"><div class="vto-card"><small>Peratus keluar mengundi yang dilaporkan</small><strong id="vtoPct" style="color:#63e3c7">—</strong><small id="vtoSource">Menunggu data bersumber</small></div><div class="vto-card"><small>Pemilih keluar mengundi (laporan)</small><strong id="vtoVoted">—</strong><small id="vtoDenominator">Asas peratus dilaporkan berasingan</small></div><div class="vto-card"><small>Jumlah pemilih berdaftar SPR</small><strong id="vtoRegistered">687,697</strong><small>28 DUN · Termasuk kategori pemilih lain</small></div></div>
 <div class="vto-progress" aria-label="Kadar keluar mengundi terkini yang mempunyai sumber"><span id="vtoProgress" style="width:0%"></span></div>
 <div id="vtoTrend" class="vto-trend"></div>
@@ -126,7 +126,7 @@ function updateFeedUI(){
 
 let vtoCache=null;
 function vtoDate(s){if(!s)return 'Belum ada';const d=new Date(s);return Number.isNaN(d.getTime())?'Masa tidak diketahui':d.toLocaleString('ms-MY',{timeZone:'Asia/Kuala_Lumpur',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',hour12:true});}
-function vtoNum(n){return Number(n).toLocaleString('ms-MY');}
+function vtoNum(n){return n===null||n===undefined||!Number.isFinite(Number(n))?'—':Number(n).toLocaleString('ms-MY');}
 function renderVTO(){
  const v=vtoCache;if(!v)return;
  const pct=Number.isFinite(v.percentage)&&v.percentage>=0&&v.percentage<=100?v.percentage:null;
@@ -137,6 +137,7 @@ function renderVTO(){
  $('vtoProgress').style.width=(pct===null?0:pct)+'%';
  const label=v.sourceLabel||'Sumber belum disahkan';
  $('vtoSource').textContent=label;
+ const ref=String(v.source||'');if(/^https:\/\/(?:bernama\.com|www\.bernama\.com|www\.utusan\.com\.my|dashboard\.spr\.gov\.my)\//.test(ref))$('vtoSourceUrl').href=ref;
  $('vtoUpdated').textContent='Data setakat: '+vtoDate(v.asOf)+' (MYT) · '+(v.feedStatus==='official_page_snapshot'?'Diperoleh daripada paparan SPR':'Snapshot laporan sumber — bukan API live');
  const history=Array.isArray(v.history)?v.history:[];
  $('vtoTrend').innerHTML=history.slice(-5).map(t=>'<div><span>'+esc(vtoDate(t.asOf))+'</span><strong>'+Number(t.percentage).toFixed(2)+'%</strong><span>'+esc(vtoNum(t.votedCount))+' pengundi</span></div>').join('');
