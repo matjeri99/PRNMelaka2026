@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#081426">
 <meta name="description" content="Dashboard pemantauan PRN Melaka ke-16 2026. 28 DUN, 79 calon, integrasi cache automatik keputusan rasmi MySPR Semak, 28 DUN dan 79 calon.">
-<title>PRN Melaka 2026 | Election Intelligence</title>
+<title>PRN Melaka 2026 · Papan Keputusan</title>
 <style>
 :root{--bg:#071222;--panel:#111e31;--panel2:#142439;--line:#27374f;--fg:#edf3fc;--muted:#9cacc3;--gold:#f1bf62;--teal:#4fe2c0;--blue:#3f88ff;--red:#ec647c;--radius:18px;--bn:#397de1;--ph:#e34d66;--pn:#35a46d;--bersama:#bd76e9;--bersatu:#37b9bc;--bebas:#8d96a4;--putra:#f5b85b}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 13% -8%,#163658 0,transparent 27%),radial-gradient(circle at 85% 0,#172943 0,transparent 20%),var(--bg);color:var(--fg);font:15px/1.48 system-ui,-apple-system,Segoe UI,Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:#a7d3ff;text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:1500px;padding:0 28px;margin:auto}
@@ -30,25 +30,90 @@ footer{margin:36px auto 0;border-top:1px solid var(--line);padding:25px 0 40px;c
 @media(max-width:760px){.vto-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.vto-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:420px){.vto-cards{grid-template-columns:1fr}.vto-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .early-votes{margin-top:14px;border-top:1px solid #32465d;padding-top:9px}.early-row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;font-size:11px;color:#b7c9dd}.early-row b{color:#fff;font-size:13px;font-variant-numeric:tabular-nums}.seat-status{white-space:normal;text-align:center}.early-votes .small-note{margin-top:8px;color:#ffd596}
+
+/* MELAKA NIGHTBOARD — clean display layer */
+:root{--bg:#09111d;--panel:#111e2d;--panel2:#15253a;--line:#243449;--fg:#eef4fc;--muted:#95a6b9;--gold:#e8bb63;--teal:#5ee0c4}
+body{background:radial-gradient(ellipse at 45% -18%,#173254 0,transparent 48%),#09111d;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--fg)}
+.wrap{max-width:1480px;padding:0 22px;margin:auto}
+.topbar{position:sticky;top:0;background:#091524f2;border-bottom:1px solid #26394c;backdrop-filter:blur(14px);z-index:20}
+.top-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;height:68px}
+.brand{display:flex;align-items:center;gap:9px}.brand-mark{display:grid;place-items:center;border:1px solid #806c3f;color:#e4bb67;width:36px;height:36px;border-radius:11px;font-size:23px}.brand strong{font-size:16px;letter-spacing:.035em;display:block}.brand strong span{color:var(--gold)}.brand small{font-size:9px;letter-spacing:.2em;color:#9db0c7}
+.top-actions{display:flex;align-items:center;gap:9px}.top-status{display:flex;align-items:center;gap:7px;border:1px solid #31506b;background:#12283d;padding:8px 11px;border-radius:999px;color:#bcd0e1;font-size:10px;font-weight:800;letter-spacing:.05em}.small-icon{width:37px;height:37px;border:1px solid #38516b;border-radius:11px;background:#162a40;color:#e9f1fa;font-size:22px;line-height:1}.info-link{color:#d9e4f1;font-weight:700;font-size:12px;padding:8px}.feed-dot{width:7px;height:7px;border-radius:50%;display:inline-block;background:var(--gold)}.feed-dot.ready{background:#45d8ad}
+.clean-main{padding-bottom:28px}
+.quick-head{display:flex;justify-content:space-between;align-items:end;gap:14px;padding:26px 0 17px}.tiny-label{font-size:11px;letter-spacing:.18em;color:#d1ad67;font-weight:800}.quick-head h1{font-size:clamp(29px,4.3vw,48px);line-height:1.02;letter-spacing:-.055em;margin:5px 0 0;font-weight:900}.quick-head h1 span{color:#e9bd65}.quick-status{text-align:right;max-width:330px}.quick-status b{display:block;font-size:12px;color:#d9e9f7}.quick-status small{display:block;color:#91a7bc;font-size:10px;margin-top:4px}
+.headline-results{border-radius:19px;border:1px solid #36516b;background:linear-gradient(120deg,#173149,#111e2e 78%);box-shadow:0 18px 35px #030b1535;padding:20px 23px;margin-bottom:22px}.headline-top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.1em;color:#a9bdd4;font-weight:800}.tag-current{background:#223a52;border:1px solid #466180;border-radius:999px;color:#d9e5f3;font-size:10px;padding:5px 9px;letter-spacing:.035em}
+.tally-layout{display:grid;grid-template-columns:minmax(160px,.85fr) minmax(0,2fr);gap:22px;align-items:end;padding:10px 0 11px}.count-major strong{font-size:clamp(43px,7.2vw,83px);line-height:1;letter-spacing:-.07em;display:block;font-variant-numeric:tabular-nums;font-weight:900}.count-major strong span{font-size:.4em;color:#9bb5cf;letter-spacing:-.04em}.count-major small{display:block;margin-top:7px;font-size:10px;color:#a3b7cc;letter-spacing:.09em;font-weight:750}
+.parties-live{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.party-live{border:1px solid #32455a;border-radius:12px;background:#0c1a2a;padding:12px 15px;border-top:3px solid var(--pc,#789);min-width:0}.party-live b{font-size:12px;color:#bdcad8;display:block}.party-live strong{font-size:clamp(28px,4.2vw,48px);font-weight:900;font-variant-numeric:tabular-nums;line-height:1.12;display:block;margin-top:6px}
+.tally-foot{border-top:1px solid #30465d;padding-top:11px;display:flex;align-items:center;gap:13px;flex-wrap:wrap;color:#95acc3;font-size:11px}.tally-foot span:last-child{margin-left:auto}
+.seat-section{margin:0 0 26px}.seat-section-head{display:flex;justify-content:space-between;align-items:center;margin:4px 0 13px;gap:12px}.seat-section-head h2{margin:0;font-size:22px;letter-spacing:-.035em}.seat-section-head span{font-size:11px;color:#9eb2c8}
+.clean-filters{display:grid;grid-template-columns:minmax(0,1fr) 175px 165px;gap:9px;margin:0 0 13px}.clean-filters .field{width:100%;min-width:0;background:#0e1c2c;border:1px solid #293c50;border-radius:11px;color:#eaf1fb;padding:11px 12px;min-height:42px}
+.seats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.seat{background:linear-gradient(150deg,#142438,#0e1b2b);min-height:179px;border:1px solid #26384d;border-radius:15px;overflow:hidden;display:flex;flex-direction:column;border-top:3px solid var(--seat-edge,#33475e);box-shadow:none}.seat:hover{border-color:#5b7591;transform:translateY(-1px)}.seat .inner{padding:14px 15px 8px;flex:1}.seat-top{margin:0 0 11px;display:flex;justify-content:space-between;align-items:center;gap:5px}.seat-code{color:#a0b9d1;font-size:11px;letter-spacing:.1em}.seat-status{background:#25374e;border:1px solid #3b5471;border-radius:6px;color:#c4d6e9;padding:4px 6px;font-size:9px;font-weight:750;text-align:right;line-height:1.18}.seat-status.official{background:#174d42;border-color:#27715e;color:#9ef1d9}.seat-status.unofficial{background:#4b3b20;border-color:#80643b;color:#ffdfa0}
+.seat h3{font-size:17px;font-weight:850;letter-spacing:-.03em;margin:0 0 9px;color:#f0f6fc}.card-lead{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}.card-lead strong{font-size:27px;line-height:1;font-weight:900;color:var(--lead-color,#a4b4c5)}.card-lead small{font-size:11px;color:#a8bdcf}.seat .subline{color:#b2c4d6;font-size:11px;min-height:17px;line-height:1.35}.seat .subline.empty{color:#8095ab}.seat-footer{border-top:1px solid #29384b;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 14px;color:#8599ae;font-size:10px}.seat-footer button{font-size:10px;color:#bcd7ef;font-weight:800}
+.card-votes{margin:9px 0 2px;border-top:1px solid #263d51;padding-top:7px}.card-vote{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#b5c8d9;padding:4px 0}.card-vote b{color:#f1f6fc;font-variant-numeric:tabular-nums}.card-vote span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.seat[style*="--seat-edge"]{transition:transform .14s,border-color .14s}
+.bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:25px}.bottom-row .panel{padding:20px;border-radius:16px;box-shadow:none}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px}.panel-head h2{font-size:18px;margin:0}.minor{font-size:10px;color:#90a7ba}.compact-vto-numbers{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:13px 0}.compact-vto-numbers>strong{color:#5cdbb9;font-size:44px;line-height:1;font-weight:900;letter-spacing:-.05em}.compact-vto-numbers>div b{font-size:20px;display:block;text-align:right}.compact-vto-numbers>div small{font-size:10px;color:#92a5ba;display:block;text-align:right}.vto-progress{height:9px;border-radius:99px;overflow:hidden;background:#203b4b}.vto-progress>span{display:block;height:100%;width:0;background:#40caa8;border-radius:99px}.inset-details{margin-top:13px;color:#a7bad0;font-size:11px}.inset-details summary{cursor:pointer}.inset-details[open]{padding-top:10px}.inset-muted{color:#96abc2;font-size:11px;margin-top:10px}.composition-compact .party-row{grid-template-columns:74px 1fr 26px;margin:8px 0}.composition-compact .track{height:9px}.composition-compact #partyBoard{margin-top:13px}.bottom-row .history{margin:9px 0}.bottom-row .bars{height:13px;display:flex;border-radius:5px;overflow:hidden;margin-top:6px}.sr-only{position:absolute;overflow:hidden;clip-path:inset(50%);height:1px;width:1px;white-space:nowrap}.sr-only button{width:1px;height:1px}
+.clean-footer{border-top:1px solid #283a50;margin-top:20px;padding-top:18px;color:#7f92a6;font-size:10px;display:flex;align-items:flex-start;justify-content:space-between;gap:15px}.clean-footer details{max-width:520px}.clean-footer details>summary{cursor:pointer;color:#b3c7d9;font-size:12px;text-align:right}.info-body{padding:14px 0;line-height:1.6;font-size:12px;color:#a6b6c8}.info-body p{margin:7px 0}.utility-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.utility-actions button{font-size:11px}
+@media(max-width:1100px){.seats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:800px){.wrap{padding:0 14px}.top-inner{height:61px}.quick-head{align-items:start;padding:22px 0 13px;flex-direction:column;gap:7px}.quick-status{text-align:left;max-width:100%}.headline-results{padding:16px}.tally-layout{grid-template-columns:1fr;gap:12px}.parties-live{grid-template-columns:repeat(4,minmax(0,1fr))}.party-live{padding:10px}.party-live strong{font-size:34px}.seat-section-head h2{font-size:19px}.clean-filters{grid-template-columns:1fr 1fr}.clean-filters input{grid-column:1/-1}.seats{grid-template-columns:repeat(2,minmax(0,1fr))}.bottom-row{grid-template-columns:1fr}}
+@media(max-width:500px){.brand strong{font-size:13px}.top-status{font-size:9px;padding:7px 8px}.quick-head h1{font-size:32px}.tally-layout{gap:8px}.count-major strong{font-size:51px}.party-live{padding:9px 8px}.party-live strong{font-size:28px}.parties-live{gap:6px}.party-live b{font-size:10px}.seat{min-height:167px}.seat .inner{padding:12px 11px 8px}.seat h3{font-size:15px}.seat-footer{padding:8px 11px}.card-lead strong{font-size:23px}.seat-status{font-size:8px;padding:4px}.seat-code{font-size:10px}.clean-footer{display:block}.clean-footer details>summary{text-align:left;margin-top:10px}}
+@media(max-width:345px){.seats{grid-template-columns:1fr}.parties-live{grid-template-columns:repeat(2,1fr)}}
+
 </style>
 </head>
 <body>
-<header><div class="wrap head"><div class="logo"><span class="seal">✦</span><span>PRN MELAKA <span style="color:var(--gold)">2026</span><span class="subbrand">Election Intelligence · Edisi Ke-16</span></span></div><div class="head-actions"><span class="tag"><span class="dot"></span> <span id="topFeedLabel">MENUNGGU SYNC SPR</span></span><button class="btn btn-sm" id="refreshBtn" type="button">↻ Semak Data</button><button class="btn btn-sm" id="exportBtn">Eksport JSON</button><button class="btn btn-sm" id="csvBtn">CSV</button><button class="btn btn-sm btn-primary" id="operatorBtn">Mod Operator</button></div></div></header>
-<main class="wrap">
-<section class="hero"><div><p class="eyebrow">Pusat Pemantauan Pilihan Raya · 14 November 2026</p><h1>MANDAT <span>MELAKA</span><br>KE-16</h1><p class="intro">28 DUN. 79 calon. Keputusan rasmi dipaparkan automatik apabila diterbitkan oleh MySPR Semak. Rekod operator ialah pilihan sandaran.</p></div><div class="hero-note"><b id="datestamp">Memeriksa cache SPR…</b>Semakan berkala setiap 60 saat pada fail data laman.<br><span id="savedLabel">Belum diselaraskan</span></div></section>
-<div class="livefeed" role="status" aria-live="polite"><div><span class="feed-dot" id="feedDot"></span><strong id="feedHeading">Menunggu sambungan cache keputusan SPR</strong><small id="feedDetail">Pautan rasmi dan status kemas kini dipaparkan di sini.</small></div><div><a href="https://dashboard.spr.gov.my/" target="_blank" rel="noopener noreferrer">Keluar mengundi (VTO) SPR ↗</a> &nbsp;·&nbsp; <a href="https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun" target="_blank" rel="noopener noreferrer">Keputusan rasmi SPR ↗</a></div></div><div class="notice"><b>Ketelusan sumber:</b> Data automatik dibaca daripada cache JSON yang dikemas kini oleh GitHub Actions menggunakan panggilan JSON laman MySPR Semak (bukan API awam rasmi yang dijamin SPR). Kemas kini boleh lewat. Jika tiada rekod, paparan akan kekal menunggu — <b>tiada angka kemenangan atau undi direka.</b> Input operator, jika digunakan, ialah sumber berasingan.</div>
-<section class="panel vto-panel" id="kehadiran" aria-label="Kehadiran mengundi PRN Melaka">
-<div class="vto-head"><div><p class="eyebrow">Pemantauan peratus keluar mengundi</p><h2 style="font-size:22px;margin:0">KEHADIRAN MENGUNDI <span class="accent">(VTO)</span></h2><p class="vto-sub" id="vtoUpdated">Memeriksa snapshot sumber…</p></div><div class="head-actions"><a class="btn btn-sm" href="https://dashboard.spr.gov.my/" target="_blank" rel="noopener noreferrer">↗ Dashboard SPR (live)</a><a class="btn btn-sm" id="vtoSourceUrl" href="https://bernama.com/bm/am/news.php?id=2634246" target="_blank" rel="noopener noreferrer">↗ Sumber Snapshot</a><button class="btn btn-sm" type="button" id="vtoRefresh">↻ Semak VTO</button></div></div>
-<div class="vto-cards"><div class="vto-card"><small>Peratus keluar mengundi yang dilaporkan</small><strong id="vtoPct" style="color:#63e3c7">—</strong><small id="vtoSource">Menunggu data bersumber</small></div><div class="vto-card"><small>Pemilih keluar mengundi (laporan)</small><strong id="vtoVoted">—</strong><small id="vtoDenominator">Asas peratus dilaporkan berasingan</small></div><div class="vto-card"><small>Jumlah pemilih berdaftar SPR</small><strong id="vtoRegistered">687,697</strong><small>28 DUN · Termasuk kategori pemilih lain</small></div></div>
-<div class="vto-progress" aria-label="Kadar keluar mengundi terkini yang mempunyai sumber"><span id="vtoProgress" style="width:0%"></span></div>
-<div id="vtoTrend" class="vto-trend"></div>
-<div class="section-title" style="margin-top:14px"><h2>28 DUN · Pemilih berdaftar & kadar VTO</h2><span class="legend">— = belum ada bacaan DUN yang disahkan</span></div>
-<div id="vtoAreas" class="vto-list"></div><p class="small-note" style="margin-top:12px">Peratus VTO tidak dikira daripada jumlah 687,697 pemilih berdaftar kerana asas pengiraan laporan SPR boleh berbeza. Paparan ini ialah snapshot bersumber; <b>bukan</b> suapan API rasmi SPR yang disahkan masa nyata. <a href="https://dashboard.spr.gov.my/" target="_blank" rel="noopener noreferrer">Semak kadar terkini terus di SPR.</a></p>
-</section>
-<section class="metrics" aria-label="Petunjuk utama"><div class="metric"><label>Jumlah Kerusi DUN</label><strong>28</strong><small>Majoriti mudah 15 · ⅔: 19</small></div><div class="metric"><label>Calon bertanding</label><strong>79</strong><small>65 lelaki · 14 wanita</small></div><div class="metric"><label>Pemilih berdaftar</label><strong>687,697</strong><small>Daftar pemilih PRN 2026</small></div><div class="metric"><label>Keputusan dilaporkan</label><strong id="reported">0<span class="accent">/28</span></strong><small id="reportSub">Menunggu keputusan</small></div><div class="metric"><label>Keputusan rasmi SPR (Auto)</label><strong class="accent" id="official">0</strong><small>Data sumber SPR / pengesahan operator</small></div></section>
-<section class="middle"><div class="panel"><div class="section-title"><h2>Komposisi Kerusi 2026</h2><span class="legend">Hanya kerusi dengan status keputusan</span></div><div id="partyBoard"></div><div class="threshold"><em>15 kerusi · Majoriti mudah</em><em>19 kerusi · Dua pertiga</em><span id="leaderText">Tiada keputusan dilaporkan.</span></div></div><div class="panel"><div class="section-title"><h2>Perbandingan 2021 & 2026</h2><span class="legend">Kerusi dimenangi</span></div><p class="mini">PRN 2021: BN 21 · PH 5 · PN 2</p><div class="history"><div><div class="history-label"><b>2021</b><span>28/28</span></div><div class="bars" id="bar2021"><span style="width:75%;background:var(--bn)"></span><span style="width:17.857%;background:var(--ph)"></span><span style="width:7.143%;background:var(--pn)"></span></div></div></div><div class="history"><div><div class="history-label"><b>2026</b><span id="barLabel">0/28 dilaporkan</span></div><div class="bars" id="bar2026" style="background:#26374b"></div></div></div><div class="inline-list"><span class="tag">BN</span><span class="tag">PH</span><span class="tag">PN</span><span class="tag">BERSAMA</span><span class="tag">BERSATU</span><span class="tag">Lain-lain</span></div><p class="small-note" style="margin-top:15px">Nota: 2021 ialah keputusan sejarah, bukan kedudukan 2026. Kerusi tidak dilaporkan kekal kosong pada carta 2026.</p></div></section>
-<section id="direktori"><div class="toolbar"><div><p class="eyebrow" style="margin:0 0 4px">Direktori kawasan</p><h2>28 Kerusi Dewan Undangan Negeri</h2></div><div class="filters"><input class="field" id="search" placeholder="Cari DUN, calon atau parti…" aria-label="Cari DUN atau calon"><select class="field filter" id="statusFilter" aria-label="Tapis status"><option value="all">Semua status</option><option value="none">Belum dilaporkan</option><option value="unofficial">Tidak rasmi</option><option value="official">Rasmi / Operator</option></select><select class="field filter" id="typeFilter" aria-label="Tapis pertandingan"><option value="all">Semua pertandingan</option><option value="2">2 penjuru</option><option value="3">3 penjuru</option><option value="4">4 penjuru</option></select></div></div><p class="result-count" id="resultCount">Memaparkan 28 kawasan</p><div id="seats" class="seats"></div></section>
-<footer><b>PRN Melaka 2026 · Election Intelligence · SPR Auto Cache + VTO v2.1</b><p style="max-width:850px">Calon dan kerusi berdasarkan senarai penamaan 31 Okt 2026. Sumber data asas: SPR / Bernama dan senarai calon yang diterbitkan media. Keputusan MySPR Semak dibaca daripada cache hasil kutipan berkala. Ini laman komuniti, bukan dashboard rasmi SPR. Kekerapan dan kejayaan pengumpulan bergantung kepada GitHub Actions dan struktur sistem SPR.</p><div class="footer-links"><a href="https://spr.gov.my/prudunmelaka16/" target="_blank" rel="noopener noreferrer">SPR · Laman PRN Melaka</a><a href="https://election.bernama.com/prn/melaka/2026/" target="_blank" rel="noopener noreferrer">Bernama · Pilihan Raya Melaka</a><a href="https://election.bernama.com/prn/melaka/2026/penamaan/?detail=seats" target="_blank" rel="noopener noreferrer">Bernama · Senarai kerusi</a><a href="https://pilihanraya.my/melaka/prn16-2026/calon" target="_blank" rel="noopener noreferrer">Senarai 79 calon</a></div><div id="operatorControls" style="display:none;margin-top:20px"><button id="importBtn" class="btn">Import keputusan JSON</button><button id="resetBtn" class="btn btn-danger">Padam keputusan pada peranti</button><input id="fileInput" type="file" accept="application/json,.json" hidden></div></footer>
+<header class="topbar"><div class="wrap top-inner">
+  <div class="brand"><span class="brand-mark">✦</span><div><strong>PRN MELAKA <span>2026</span></strong><small>PAPAN KEPUTUSAN</small></div></div>
+  <div class="top-actions"><span class="top-status"><i class="feed-dot" id="feedDot"></i><span id="topFeedLabel">MEMUATKAN</span></span><button class="small-icon" id="refreshBtn" title="Semak keputusan" aria-label="Semak keputusan">↻</button><a href="#maklumat" class="info-link">Info</a></div>
+</div></header>
+<main class="wrap clean-main">
+  <section class="quick-head"><div><div class="tiny-label">14 NOVEMBER 2026 · 28 DUN</div><h1>MELAKA <span>2026</span></h1></div><div class="quick-status"><b id="feedHeading">Sedang menyemak...</b><small id="feedDetail">Memuatkan keputusan</small></div></section>
+
+  <section class="headline-results" aria-label="Keputusan pilihan raya terkini">
+    <div class="headline-top"><span>KEPUTUSAN TERKINI</span><span class="tag-current" id="summarySourceStatus">TIDAK RASMI</span></div>
+    <div class="tally-layout">
+      <div class="count-major"><strong id="reported">0<span>/28</span></strong><small>KERUSI DILAPORKAN</small></div>
+      <div class="parties-live" id="partySnapshot"><div class="party-live"><b>BN</b><strong>—</strong></div><div class="party-live"><b>PH</b><strong>—</strong></div><div class="party-live"><b>PN</b><strong>—</strong></div></div>
+    </div>
+    <div class="tally-foot"><span><b id="official">0</b> rasmi</span><span id="reportSub">Menunggu keputusan...</span><span id="summaryUpdate">Menyemak...</span></div>
+  </section>
+
+  <section class="seat-section" id="direktori">
+    <div class="seat-section-head"><h2>Keputusan 28 DUN</h2><span id="resultCount">28 kawasan</span></div>
+    <div class="clean-filters"><input class="field" id="search" placeholder="⌕  Cari DUN atau calon" aria-label="Cari DUN atau calon">
+      <select class="field filter" id="statusFilter" aria-label="Status"><option value="all">Semua</option><option value="unofficial">Tidak rasmi</option><option value="official">Rasmi</option><option value="none">Menunggu</option></select>
+      <select class="field filter" id="typeFilter" aria-label="Jenis pertandingan"><option value="all">Semua penjuru</option><option value="2">2 penjuru</option><option value="3">3 penjuru</option><option value="4">4 penjuru</option></select>
+    </div>
+    <div class="seats" id="seats" aria-live="polite"></div>
+  </section>
+
+  <section class="bottom-row" aria-label="Kehadiran mengundi dan statistik">
+    <div class="panel compact-vto" id="kehadiran">
+      <div class="panel-head"><h2>Keluar Mengundi</h2><span class="minor" id="vtoUpdated">—</span></div>
+      <div class="compact-vto-numbers"><strong id="vtoPct">—</strong><div><b id="vtoVoted">—</b><small>pengundi</small></div></div>
+      <div class="vto-progress"><span id="vtoProgress"></span></div>
+      <details class="inset-details"><summary>Lihat pecahan DUN</summary><div id="vtoTrend" class="vto-trend"></div><div id="vtoAreas" class="vto-list"></div></details>
+      <div class="sr-only" id="vtoDenominator"></div><div class="sr-only" id="vtoRegistered"></div><div class="sr-only" id="vtoSource"></div>
+      <div class="sr-only"><button id="vtoRefresh">Kemas kini VTO</button><a id="vtoSourceUrl" href="https://dashboard.spr.gov.my/">Sumber</a></div>
+    </div>
+    <div class="panel composition-compact">
+      <div class="panel-head"><h2>Komposisi Kerusi</h2><span class="minor">2026</span></div>
+      <div id="partyBoard"></div>
+      <div class="inset-muted" id="leaderText">Belum ada keputusan.</div>
+      <details class="inset-details"><summary>Banding 2021</summary><div class="history"><div><span class="minor">2021 · BN 21 / PH 5 / PN 2</span><div class="bars" id="bar2021"><span style="width:75%;background:#397de1"></span><span style="width:17.857%;background:#e34d66"></span><span style="width:7.143%;background:#35a46d"></span></div></div></div><div class="minor" id="barLabel">2026</div><div class="bars" id="bar2026"></div></details>
+    </div>
+  </section>
+
+  <footer class="clean-footer">
+    <span>PRN MELAKA 2026 · PAPAN PEMANTAUAN BEBAS</span>
+    <details id="maklumat"><summary>Info & pengurusan</summary>
+      <div class="info-body"><p>Keputusan awal ialah <b>tidak rasmi</b> sehingga pengumuman SPR. Bilangan undi calon hanya dipaparkan apabila tersedia dan dapat disahkan. Data mungkin lewat dikemas kini. Papan ini bukan laman rasmi SPR.</p>
+        <p>Data: <a href="https://mysprsemak.spr.gov.my/semakan/keputusan/pru-dun" target="_blank" rel="noopener noreferrer">MySPR</a> · <a href="https://election.bernama.com/prn/melaka/2026/" target="_blank" rel="noopener noreferrer">Bernama</a> · <a href="https://dashboard.spr.gov.my/" target="_blank" rel="noopener noreferrer">VTO SPR</a></p>
+        <p id="datestamp">Belum ada data</p><p id="savedLabel"></p>
+        <div class="utility-actions"><button class="btn btn-sm" id="exportBtn">JSON</button><button class="btn btn-sm" id="csvBtn">CSV</button><button class="btn btn-sm" id="operatorBtn">Mod Operator</button></div>
+        <div id="operatorControls" style="display:none;margin-top:12px"><button id="importBtn" class="btn btn-sm">Import JSON</button><button id="resetBtn" class="btn btn-sm btn-danger">Padam data setempat</button><input id="fileInput" type="file" accept="application/json,.json" hidden></div>
+      </div>
+    </details>
+  </footer>
 </main>
 <dialog id="editor"><form id="editForm" method="dialog"><div class="modal-hd"><div><span class="eyebrow" style="margin:0" id="modalCode">N01</span><h2 id="modalTitle">Kawasan</h2></div><button type="button" class="close" id="closeModal" aria-label="Tutup">×</button></div><div class="modal-bd"><p class="small-note" id="modalIntro"></p><div class="field-wrap"><label for="editStatus">Status keputusan</label><select class="field" id="editStatus"><option value="none">Belum dilaporkan</option><option value="unofficial">TIDAK RASMI · Laporan awal</option><option value="official">RASMI SPR · Setelah disemak</option></select></div><div class="separation"></div><div class="field-wrap"><label>Jumlah undi setiap calon (kosong jika belum diketahui)</label><div id="votesInputs"></div></div><div class="field-wrap"><label for="editTurnout">Peratus keluar mengundi (jika diketahui)</label><input class="field" id="editTurnout" type="number" step="0.01" min="0" max="100" placeholder="Contoh: 72.50"></div><div class="field-wrap"><label for="editSource">Sumber keputusan / pautan dokumen</label><input class="field" id="editSource" type="text" placeholder="https://... atau nombor dokumen SPR"></div><div class="field-wrap"><label for="editNotes">Catatan audit operator</label><textarea class="field" id="editNotes" rows="3" placeholder="Masa diumumkan, pegawai menyemak, pembetulan…"></textarea></div><label class="check"><input type="checkbox" id="verifiedOfficial"><span>Untuk status RASMI SPR sahaja: saya telah menyemak sumber keputusan rasmi dan mengesahkan maklumat yang dimasukkan.</span></label><p class="small-note" id="modalError" style="color:#ff9ab0;min-height:18px"></p></div><div class="modal-ft"><button type="button" class="btn" id="cancelBtn">Batal</button><button type="submit" class="btn btn-primary">Simpan Keputusan</button></div></form></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
@@ -172,6 +237,109 @@ async function loadVTO(manual=false){
 }
 $('vtoRefresh').addEventListener('click',()=>loadVTO(true));
 
-load();render();updateFeedUI();loadFeed();loadVTO();setInterval(()=>{loadFeed();loadVTO();},60000);
+
+/* Clean visual rendering with verified official and clearly marked media standings. */
+let mediaSeats={},mediaMeta=null;
+function liveSeat(s){
+ const official=liveRecords[s.id];
+ const media=mediaSeats[s.id];
+ const early=preliminaryRecords[s.id];
+ const local=record(s);
+ if(official){const w=computed(s);return {state:"official",party:w?.winner.party||null,record:official,detail:"Rasmi",provenance:"SPR"};}
+ if(media){return {state:"unofficial",party:media.party,record:null,detail:"Tidak rasmi",provenance:"Bernama"};}
+ if(early){return {state:"unofficial",party:null,record:early,detail:"Undi sementara",provenance:"MySPR"};}
+ if(local.status!=="none"&&computed(s)){return {state:local.status,party:computed(s).winner.party,record:local,detail:local.status==="official"?"Rasmi (operator)":"Tidak rasmi (operator)",provenance:"operator"};}
+ return {state:"none",party:null,record:null,detail:"Menunggu",provenance:""};
+}
+function scoreboard(){
+ const counts=Object.fromEntries(parties.map(p=>[p,0]));let reported=0,official=0,unofficial=0;
+ for(const seat of SEATS){const st=liveSeat(seat);if(st.state==="none")continue;reported++;if(st.state==="official")official++;else unofficial++;if(st.party)counts[st.party]++;}
+ return {counts,reported,official,unofficial};
+}
+renderStats=function(){
+ const s=scoreboard();
+ $('reported').innerHTML=String(s.reported)+'<span>/28</span>';
+ $('official').textContent=String(s.official);
+ $('reportSub').textContent=s.unofficial+' tidak rasmi';
+ const list=[...Object.entries(s.counts)].filter(([p,n])=>n>0||['BN','PH','PN'].includes(p)).sort((a,b)=>b[1]-a[1]);
+ const primary=['BN','PH','PN'],extra=list.filter(([p,n])=>!primary.includes(p)&&n>0).map(x=>x[0]);
+ $('partySnapshot').innerHTML=[...primary,...extra].map(p=>'<div class="party-live" style="--pc:'+partyColor(p)+'"><b>'+esc(p)+'</b><strong>'+s.counts[p]+'</strong></div>').join('');
+ $('partyBoard').innerHTML=Object.entries(s.counts).sort((a,b)=>b[1]-a[1]).map(([p,n])=>'<div class="party-row"><span class="party-label" style="color:'+partyColor(p)+'">'+esc(p)+'</span><div class="track"><div class="fill" style="width:'+(n/28*100)+'%;background:'+partyColor(p)+'"></div></div><span class="party-num">'+n+'</span></div>').join('');
+ $('leaderText').textContent=s.reported+' daripada 28 kerusi dilaporkan · '+s.official+' rasmi';
+ $('barLabel').textContent='2026 · '+s.reported+'/28';
+ $('bar2026').innerHTML=Object.entries(s.counts).map(([p,n])=>'<span title="'+esc(p)+' '+n+'" style="width:'+(n/28*100)+'%;background:'+partyColor(p)+'"></span>').join('');
+ $('summarySourceStatus').textContent=s.unofficial?'TIDAK RASMI':s.official?'RASMI':'MENUNGGU';
+ const stamp=mediaMeta?.retrievedAt||feedMeta?.syncedAt;
+ $('summaryUpdate').textContent=stamp?'Dikemas kini '+new Date(stamp).toLocaleTimeString('ms-MY',{timeZone:'Asia/Kuala_Lumpur',hour:'numeric',minute:'2-digit',hour12:true}):'Menunggu kemas kini';
+ $('savedLabel').textContent=s.unofficial+' tidak rasmi, '+s.official+' rasmi';
+};
+renderCards=function(){
+ const q=$('search').value.toLocaleLowerCase('ms').trim(),filter=$('statusFilter').value,type=$('typeFilter').value;
+ const seats=SEATS.slice().sort((a,b)=>{
+   const stA=liveSeat(a),stB=liveSeat(b);
+   const rank=s=>s.state==="official"?0:s.state==="unofficial"?1:2;
+   return rank(stA)-rank(stB)||a.id.localeCompare(b.id);
+ });
+ let shown=0;const cards=[];
+ for(const s of seats){
+   const st=liveSeat(s),r=st.record;
+   if(filter!=="all"&&st.state!==filter)continue;
+   if(type!=="all"&&s.candidates.length!==Number(type))continue;
+   const hay=(s.id+' '+s.name+' '+s.candidates.map(c=>c.party+' '+c.name).join(' ')).toLocaleLowerCase('ms');
+   if(q&&!hay.includes(q))continue;
+   shown++;
+   const c=st.party?s.candidates.find(c=>c.party===st.party):null;
+   const primary=st.party||'—';
+   const valueRecord=(r&&r.votes)?r:null;
+   const rows=valueRecord?s.candidates.map((c,i)=>{
+     const v=valueRecord.votes[String(i)];
+     return Number.isSafeInteger(v)?'<div class="card-vote"><span>'+esc(c.party+' · '+c.name)+'</span><b>'+v.toLocaleString('ms-MY')+'</b></div>':'';
+   }).join(''):'';
+   const sub=st.state==='none'?'Keputusan belum tersedia':c?c.name:'Angka undi sementara';
+   const stateClass=st.state==='official'?'official':st.state==='unofficial'?'unofficial':'';
+   cards.push('<article class="seat" style="--seat-edge:'+(st.party?partyColor(st.party):'#34485c')+'"><div class="inner"><div class="seat-top"><span class="seat-code">'+esc(s.id)+'</span><span class="seat-status '+stateClass+'">'+esc(st.detail)+'</span></div><h3>'+esc(s.name)+'</h3><div class="card-lead"><strong style="--lead-color:'+(st.party?partyColor(st.party):'#8598ac')+'">'+esc(primary)+'</strong><small>'+(st.state==='none'?'Belum lapor':'Dilaporkan')+'</small></div><div class="subline '+(st.state==='none'?'empty':'')+'">'+esc(sub)+'</div>'+(rows?'<div class="card-votes">'+rows+'</div>':'')+'</div><div class="seat-footer"><span>'+s.candidates.length+' calon</span><button data-seat="'+esc(s.id)+'">Lihat calon ↗</button></div></article>');
+ }
+ $('seats').innerHTML=cards.join('')||'<p class="muted">Tiada keputusan untuk carian ini.</p>';
+ $('resultCount').textContent=shown+' / 28';
+};
+updateFeedUI=function(){
+ const s=scoreboard();
+ const status=feedState==="error"?"Semakan data terganggu":s.reported?"Keputusan sedang dikemas kini":"Menunggu keputusan";
+ $('feedHeading').textContent=status;
+ $('feedDetail').textContent=s.reported+' kerusi dilaporkan · '+s.official+' rasmi · '+s.unofficial+' tidak rasmi';
+ $('topFeedLabel').textContent=s.reported?'TERKINI · '+s.reported+'/28':'MENUNGGU';
+ $('feedDot').className='feed-dot '+(s.reported?'ready':'');
+ $('datestamp').textContent='SPR '+(feedMeta?.syncedAt||'belum diselaraskan')+' · Berita '+(mediaMeta?.retrievedAt||'belum diselaraskan');
+};
+const originalOpenSeat=openSeat;
+openSeat=function(id){
+ originalOpenSeat(id);
+ const seat=SEATS.find(s=>s.id===id),m=mediaSeats[id];
+ if(seat&&m&&!liveRecords[id]&&!preliminaryRecords[id]){
+   $('modalIntro').textContent='Kedudukan '+m.party+' dilaporkan secara TIDAK RASMI. Angka undi terperinci belum diterima.';
+ }
+};
+async function loadMedia(){
+ try{
+  const r=await fetch('./data/bernama.json?b='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const data=await r.json();
+  if(data?.schema!=='prn-melaka-bernama-v1'||data.status!=='unofficial'||!data.seats||typeof data.seats!=='object')throw new Error('Data tidak sah');
+  const clean={};
+  for(const s of SEATS){
+    const candidate=data.seats[s.id];
+    if(candidate?.status!=='unofficial'||!s.candidates.some(c=>c.party===candidate.party))continue;
+    clean[s.id]={party:candidate.party,status:'unofficial'};
+  }
+  if(Object.keys(clean).length>=Object.keys(mediaSeats).length){mediaSeats=clean;mediaMeta=data;}
+ }catch(err){
+  if(!mediaMeta)console.warn('Tidak dapat memuatkan keputusan sandaran',err);
+ }
+ updateFeedUI();render();
+}
+const oldRecord=record;
+record=function(s){return liveRecords[s.id]||records[s.id]||{status:'none',votes:{},turnout:null,source:'',notes:'',savedAt:''};};
+
+load();render();updateFeedUI();loadFeed();loadVTO();loadMedia();setInterval(()=>{loadFeed();loadVTO();loadMedia();},60000);
 </script>
 </body></html>
