@@ -80,3 +80,14 @@ Rujukan rasmi: [MySPR Semak](https://mysprsemak.spr.gov.my/semakan/keputusan/pru
 - Rekod `official` hanya terhasil apabila semua calon dipadankan dengan undi berangka, dan SPR menandakan seorang pemenang yang sepadan dengan undi tertinggi.
 - Semakan cache pada 20:14 MYT masih 0/28, kerana respons yang diterima belum mempunyai baris undi calon yang dapat dikenal pasti. Ini mungkin kerana keputusan belum diterbitkan atau struktur respons berubah. Jangan masukkan angka tanpa bukti.
 - VTO akhir yang dilaporkan: 70.59% (472,377 daripada 669,211 pemilih biasa), setakat 18:05 MYT; sumber RTM/Bernama yang memetik dashboard SPR: https://berita.rtm.gov.my/mandat/senarai-berita-mandat/senarai-artikel/prn-melaka-240-pusat-mengundi-ditutup-serentak-6-petang/
+
+
+## Nightboard v3.1 — fokus MyUndi (14 November 2026)
+
+- Antaramuka awam mendahulukan **28 kad DUN**, setiap kad menunjukkan parti mendahului, undi pendahulu, ambang dan **LEPAS/BELUM**. Ringkasan atas ialah **jumlah melepasi ambang**, bukan kerusi menang rasmi.
+- Snapshot awal di `data/myundi.json` ditranskripsikan daripada tangkap layar MyUndi pengguna pada **7:58–7:59 malam, 14 Nov 2026**: 13/28 lepas ambang (BN 11, PH 2), 28/28 ada kedudukan. Ini **kiraan tidak rasmi**.
+- **Ambang screenshot** = undi calon kedua + maksimum baki undi + 1. Sumber ini dikekalkan walaupun halaman awam MyUndi buat sementara memulangkan angka sifar.
+- `scripts/sync_myundi.py` cuba membaca `https://www.myundi.com.my/dotadmin/kerusi`. Hanya data calon yang lengkap bagi sesebuah DUN dan tidak mundur di bawah undi pendahulu snapshot akan menggantikan rekod; jika tiada data sesuai, rekod asal kekal. Pengambilan automatik dari laman MyUndi ini **best effort** dan tidak dijamin kerana format laman boleh berubah.
+- Jika rekod disegerakkan kemudian, **ambang konservatif** dikira sebagai undi calon kedua + (jumlah pemilih berdaftar DUN – jumlah undi sah yang dipaparkan) + 1. Kaedah ini berbeza daripada ambang snapshot asal, tetapi mengelakkan andaian baki undi yang tidak diketahui.
+- Workflow `.github/workflows/spr_sync.yml` dinamakan semula **PRN Melaka - MyUndi Nightboard**, tidak lagi memanggil pengumpul keputusan SPR atau Bernama. GitHub Pages menerbitkan `index.html`, `data/myundi.json` dan `data/vto.json`.
+- Paparan utama tidak memaparkan teks teknikal yang panjang; butiran sumber, masa dan kaedah boleh dilihat dalam bahagian **Info**.
