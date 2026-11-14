@@ -72,3 +72,11 @@ Rujukan rasmi: [MySPR Semak](https://mysprsemak.spr.gov.my/semakan/keputusan/pru
 - `scripts/sync_vto.py` hanya memeriksa HTML awam di dashboard SPR. Hanya angka peratus keseluruhan dengan label VTO dan waktu pemerhatian yang jelas diterima. Jika halaman memuat VTO melalui JavaScript, pengambilan HTML mungkin **tidak memperoleh data**; snapshot terakhir yang bersumber dikekalkan. Tiada endpoint API awam rasmi SPR yang disahkan untuk sambungan ini.
 - Workflow GitHub Actions menjalankan semakan VTO sepanjang waktu mengundi dan menyalin kedua-dua `data/results.json` serta `data/vto.json` ke GitHub Pages. Klik `Run workflow` untuk deploy perubahan serta-merta.
 - Untuk bacaan yang benar-benar terkini, pengguna boleh klik pautan **Dashboard SPR (live)** yang membawa ke laman SPR sendiri.
+
+
+## Pembetulan pengumpul keputusan (14 Nov 2026, malam)
+- Data SPR diproses dengan pengekstrak struktur JSON bersarang, bukan hanya `pilihanraya[0].penamaan`.
+- Undi calon yang lengkap tetapi belum diberi penanda pemenang akan diterbitkan sebagai `preliminary`, **bukan** keputusan rasmi dan **tidak dikira** sebagai kerusi menang.
+- Rekod `official` hanya terhasil apabila semua calon dipadankan dengan undi berangka, dan SPR menandakan seorang pemenang yang sepadan dengan undi tertinggi.
+- Semakan cache pada 20:14 MYT masih 0/28, kerana respons yang diterima belum mempunyai baris undi calon yang dapat dikenal pasti. Ini mungkin kerana keputusan belum diterbitkan atau struktur respons berubah. Jangan masukkan angka tanpa bukti.
+- VTO akhir yang dilaporkan: 70.59% (472,377 daripada 669,211 pemilih biasa), setakat 18:05 MYT; sumber RTM/Bernama yang memetik dashboard SPR: https://berita.rtm.gov.my/mandat/senarai-berita-mandat/senarai-artikel/prn-melaka-240-pusat-mengundi-ditutup-serentak-6-petang/
