@@ -1,4 +1,4 @@
-name: PRN Melaka - semak SPR dan terbitkan dashboard
+name: PRN Melaka - MyUndi Nightboard
 on:
   workflow_dispatch:
   push:
@@ -8,9 +8,9 @@ on:
       - 'scripts/**'
       - 'tests/**'
       - '.github/workflows/spr_sync.yml'
+      - 'data/myundi.json'
   schedule:
-    # Voting-day VTO: 08:00-18:59 MYT; results: 20:00-01:59 MYT
-    - cron: '*/5 0-10 14 11 *'
+    # Count night, 14 Nov 2026 20:00–15 Nov 01:59 MYT
     - cron: '*/5 12-17 14 11 *'
 permissions:
   contents: write
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Test SPR collector
+      - name: Test MyUndi parser and existing unit tests
         run: python -m unittest discover -s tests -v
       - name: Check frontend JavaScript syntax
         run: |
@@ -44,30 +44,17 @@ jobs:
           Path('/tmp/melaka_frontend.js').write_text('\n'.join(scripts),encoding='utf-8')
           PY
           node --check /tmp/melaka_frontend.js
-      - name: Fetch SPR website JSON
+      - name: Refresh public MyUndi vote counts (best effort)
         id: collector
         continue-on-error: true
-        env:
-          FORCE_SPR_SYNC: ${{ github.event_name == 'workflow_dispatch' && '1' || '0' }}
-        run: python scripts/sync_spr.py
-      - name: Refresh Bernama unofficial seats
-        id: bernama
-        continue-on-error: true
-        run: python scripts/sync_bernama.py
-      - name: Read public SPR turnout summary (best effort)
-        id: vto
-        continue-on-error: true
-        run: python scripts/sync_vto.py
-      - name: Note upstream failure
-        if: steps.collector.outcome == 'failure'
-        run: echo '::warning::SPR source unavailable; retaining verified cache'
+        run: python scripts/sync_myundi.py
       - name: Commit cache if changed
         run: |
-          if ! git diff --quiet -- data/results.json data/vto.json data/bernama.json; then
+          if ! git diff --quiet -- data/myundi.json; then
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add data/results.json data/vto.json data/bernama.json
-            git commit -m 'chore: update SPR Melaka results'
+            git add data/myundi.json
+            git commit -m 'chore: refresh MyUndi Melaka vote snapshot'
             git push
           else
             echo 'No updated data'
@@ -76,9 +63,8 @@ jobs:
         run: |
           mkdir -p _site/data
           cp index.html _site/index.html
-          cp data/results.json _site/data/results.json
+          cp data/myundi.json _site/data/myundi.json
           cp data/vto.json _site/data/vto.json
-          cp data/bernama.json _site/data/bernama.json
           touch _site/.nojekyll
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
